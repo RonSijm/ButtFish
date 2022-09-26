@@ -1,16 +1,12 @@
 # ButtFish 🍑🐟
-
-### Effortlessly transmitting Morse Code of chess moves to your butthole - with 💝
-
-* * *
-
+### Effortlessly transmitting Morse Code of chess moves to your butthole 💝
+---
 ## Wait what now?
 
 If you haven't been following the chess news - (because why would you) -
 As of the last couple of weeks - (Monday September 5, 2022) there's been drama going on in the chess world.
 
-During the Sinquefield Cup there was a chess match between 5-time world chess champion Magnus Carlsen - (basically the final boss of chess) - and another lower level chess player. No one expected Magnus to lose, but he did. After losing the chess match Magnus Carlsen withdrew from the tournament and posted a tweet saying "I've withdrawn from the tournament" and attached a meme video of Jose Mourinho saying "I prefer not to speak. If I speak I am in big trouble … and I don't want to be in big trouble." - Classic 👌.
-![video](https://www.youtube.com/watch?v=yogfwJXVBDg)
+During the Sinquefield Cup there was a chess match between 5-time world chess champion Magnus Carlsen - (basically the final boss of chess) - and another lower level chess player. No one expected Magnus to lose, but he did. After losing the chess match Magnus Carlsen withdrew from the tournament and posted a tweet saying "I've withdrawn from the tournament" and attached a meme video of Jose Mourinho saying ["I prefer not to speak. If I speak I am in big trouble … and I don't want to be in big trouble."](https://www.youtube.com/watch?v=yogfwJXVBDg) - Classic 👌.
 
 The tweet was interpreted by the chess community as an accusation of cheating.
 
@@ -20,7 +16,7 @@ The wildest accusation is that the cheating player might have been using a Buttp
 
 I'm not going to name the other player, google it I suppose. So far it hasn't been proven that he actually cheated, though he has received a lot of backlash already - so I assume this whole drama has been a huge pain the in butt for him already anyways. 🥁
 
-* * *
+---
 
 ## Why?
 
@@ -31,8 +27,12 @@ Firstly I didn't have much else to do this weekend, so it seemed like a fun thin
 So I started looking into the possibilities and I found the project [Buttplug.io](https://buttplug.io/) \- the name of this project is not super inclusive of what it actually does - actually it connects to a huge amount of sex toys. [See a full list here \[nswf\]](https://iostindex.com/?filter0Availability=Available,DIY&filter1Connection=Digital). Other devices include Cockthings, so if you're not comfortable with putting Stockfish in your butthole, there's also the possibility of trying this with a Cockthing, and practically you'll be running *CockFish*.
 
 Secondly, who else would possibly build this? I've created a Venn diagram to illustrate how rare the chances are someone would develop this.
+
 ![venndiagram](https://user-images.githubusercontent.com/337928/192335511-f8a3d559-ad29-443b-ab3f-c45125b1e100.png)
-As you can see, if we'd have to wait for "the chosen one" with interests in all three fields, this project would never exist. So I decided that it should exist, so I made it.
+
+As you can see by the diagram, if we'd have to wait for "the chosen one" with interests in all three fields, this project would never exist. So I decided that it should exist, so I made it.
+
+---
 
 ## Features
 
@@ -66,7 +66,10 @@ A demo of manually entering a Yeelight address
 #### Side by side
 
 A demo of a Yeelight connector running side by side with the application
-[sidebyside-yeelight.webm](https://user-images.githubusercontent.com/337928/192335290-9d501f24-ca04-4f17-8dfc-e4773eeb05d2.webm)
+
+[sidebyside-yeelight.webm](https://user-images.githubusercontent.com/337928/192337315-964201e4-0a23-49bc-8889-a079357967c3.webm)
+
+---
 
 ### Setup / Yeelight
 
@@ -79,6 +82,8 @@ To use a Yeelight, you must enable developer mode for your Yeelight. To do so, d
 - Go to your Yeelight settings in the upper right corner
 - Click Device Info
 - You should now see a field "IP address". Use the value for manual mode.
+- 
+---
 
 ### Data
 
@@ -86,11 +91,15 @@ Example FEN code that I used: *"rnb1kbnr/pppp1ppp/8/4p1q1/5P2/4PQ2/PPPP2PP/RNB1K
 
 If you want to generate a FEN code on chess.com, you can go to a match, click on analysis - which will redirect you to https://www.chess.com/analysis with the selected match, and then if you press the share button you will see a FEN code. There might be an easier way to do this, but I don't know
 
+---
+
 ### TODO
 
 - [ ] **buttplug.io verification** \- Due to not having any buttplugs myself, or other devices compatible with Buttplug.io, I've only build this project based on the documentation and samples provided by Buttplug.io. I'm looking to contact some of their people on discord to see if anyone has a device that should work with this project, and verify that it actually works
 - [ ] **Real world chess match testing** \- The chess world seems to assume that it's possible to accurately receive chess moves through your butthole, and use this to your advantage and even beat the final chess boss Magnus Carlsen with this. Since this has been a working theory, so far I haven't seen any attempts to replicate this. Hopefully this project with aid in this endeavor. Unfortunately I can barely play chess, nor understand Morse Code, so hopefully we'll be able to find some brave chessmaster grandmaster that's willing to 'take one for the team' (in the butt)
 - [ ] **Post vid** In the spirit of [WatchPeopleCode](https://www.reddit.com/r/WatchPeopleCode/) I recorded my development process. I haven't had time to edit it down and post it. Might if someone is actually interested (probably not)
+
+---
 
 ## Donate
 
@@ -100,11 +109,15 @@ I don't really need your money, but if you feel like donating anything:
 - Paypal: [paypal.me/ronsijm](https://paypal.me/ronsijm)
 - I signed up for the github sponsor program, that's still pending though
 
+---
+
 ## Code of Conduct and Ethnics
 
 As mentioned before - this project is a meme. I do not endorse or encourage chess cheating in any way possible. Would you decide to try out this project yourself, you must notify your chess partner in advance that you're using chess augmentations though vibrations in your butthole.
 
 Would you decide not to disclose this in (official) matches, then I'm in no way responsible for the consequences of either you getting banned from chess.com, or pissing off Magnus Carlsen and having him forfeit your matches after a couple of moves
+
+---
 
 ### Library and Mentions
 
