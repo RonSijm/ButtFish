@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Buttplug" Version="2.0.6" />
+    <PackageReference Include="Colorful.Console" Version="1.2.15" />
+    <PackageReference Include="YeelightAPI" Version="1.10.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Users\sijmr\OneDrive\Dev\Personal\Chess\Stockfish.NET\Stockfish.NET.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="stockfish_15_x64_avx2.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
