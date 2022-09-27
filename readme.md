@@ -99,6 +99,20 @@ If you want to generate a FEN code on chess.com, you can go to a match, click on
 - [ ] **Real world chess match testing** \- The chess world seems to assume that it's possible to accurately receive chess moves through your butthole, and use this to your advantage and even beat the final chess boss Magnus Carlsen with this. Since this has been a working theory, so far I haven't seen any attempts to replicate this. Hopefully this project with aid in this endeavor. Unfortunately I can barely play chess, nor understand Morse Code, so hopefully we'll be able to find some brave chessmaster grandmaster that's willing to 'take one for the team' (in the butt)
 - [ ] **Post vid** In the spirit of [WatchPeopleCode](https://www.reddit.com/r/WatchPeopleCode/) I recorded my development process. I haven't had time to edit it down and post it. Might if someone is actually interested (probably not)
 
+### Testing (buttplug.io verification)
+
+The internet pointed out that I hadn't actually tested it out with a vibrating device. 
+Also there's a theory in computer science that [every programmer needs a rubby ducky](https://rubberduckdebugging.com/) - [for debugging purposes.](https://en.wikipedia.org/wiki/Rubber_duck_debugging). What I found is close enough
+
+After scrolling though the list of compatible Buttplug.io devices, I came across this [nonsensical device](https://www.libotoy.co.uk/designer-toys/carlos-app-remote-control-stimulator)
+![ducky](https://user-images.githubusercontent.com/337928/192588741-dc7f6268-c87f-4890-a335-976910adda0e.png)
+
+It reminds me of a real-life representation of the famous internet meme dickbutt. 
+
+I also don't have a rubber duck for debugging purposes yet, so I count this as a win-win-win. I ordered this thing, it might take a couple of days to ship.
+
+You're lucky that I'm this dedicated to stupid memes. I'll let you know how it goes once it arrives
+
 ---
 
 ## Donate
