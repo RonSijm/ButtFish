@@ -30,7 +30,7 @@ Secondly, who else would possibly build this? I've created a Venn diagram to ill
 
 ![venndiagram](https://user-images.githubusercontent.com/337928/192335511-f8a3d559-ad29-443b-ab3f-c45125b1e100.png)
 
-As you can see by the diagram, if we'd have to wait for "the chosen one" with interests in all three fields, this project would never exist. So I decided that it should exist, so I made it.
+As you can see by the diagram, I decided that it should exist, so I made it.
 
 ---
 
