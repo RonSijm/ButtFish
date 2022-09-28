@@ -133,7 +133,22 @@ Would you decide not to disclose this in (official) matches, then I'm in no way 
 
 ---
 
-### Library and Mentions
+### Coverage and Mentions (incoming)
+
+[This project was covered by](https://www.vice.com/en/article/5d3w9z/did-hans-neimann-cheat-at-chess-with-a-sex-toy-this-coder-is-attempting-to-find-out) [Matthew Gault](https://www.vice.com/en/contributor/matthew-gault) a Staff Writer at Motherboard/VICE Media.
+Initially it on the font-page of Motherboard, on their front-page together with a live feed of NASA's DART mission - humanity's first strike against potential total annihilation by an asteroid in the future. 
+
+![vice-front-page](https://user-images.githubusercontent.com/337928/192803688-06c840bd-352a-4e12-8c6f-49f187dd21b8.png)
+
+Someone is solving possibly the biggest crisis in human history, while the other is just smashing spacecrafts into a space rocks
+
+NASA an I have different priorities I suppose...
+
+It was also shown on the VICE front-page of World News...
+
+https://user-images.githubusercontent.com/337928/192804145-49200e59-77b0-4d8d-b5f0-a9ca11fdfe20.png
+
+### Library and Mentions (outgoing)
 
 - Buttplug.io main website: https://buttplug.io
 - Buttplug.io C# library: https://github.com/buttplugio/buttplug-rs-ffi/tree/master/csharp
