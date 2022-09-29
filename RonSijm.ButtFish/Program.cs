@@ -12,28 +12,20 @@ public class Program
         Colorful.Console.WriteAscii("ButtFish", Color.FromArgb(0, 212, 255));
         Console.WriteLine();
 
-        var encoder = GetCharacterEncoder();
+        var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json", optional: true).Build();
+        var options = builder.Get<Options>();
+
+        ICharacterEncoder encoder = options.Encoder is not "SimplifiedPulse" ? new MorseEncoder() : new SimplifiedPulseEncoder();
 
         var serviceProvider = new ServiceCollection()
             .AddSingleton<ButtFishCore>()
             .AddSingleton(encoder)
+            .AddSingleton(options)
             .BuildServiceProvider();
 
         var core = serviceProvider.GetRequiredService<ButtFishCore>();
         await core.Start();
 
         Console.ReadKey();
-    }
-
-    private static ICharacterEncoder GetCharacterEncoder()
-    {
-        var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json", optional: true).Build();
-        var encoderConfig = builder["Encoder"];
-
-        ICharacterEncoder encoder = null;
-
-        encoder = encoderConfig is not "SimplifiedPulse" ? new MorseEncoder() : new SimplifiedPulseEncoder();
-
-        return encoder;
     }
 }

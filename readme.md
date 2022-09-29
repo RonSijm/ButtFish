@@ -24,7 +24,7 @@ This project is mostly a meme.
 
 Firstly I didn't have much else to do this weekend, so it seemed like a fun thing to implement. I could not find any project making this kind of cheat possible. The closest mention I could find is [Sockfish](https://incoherency.co.uk/blog/stories/sockfish.html) \- A project by James Stanley where he implemented Stockfish in his shoes (or sock). I'm not entirely sure how he implemented it, or whether his implementation is open sourced.
 
-So I started looking into the possibilities and I found the project [Buttplug.io](https://buttplug.io/) \- the name of this project is not super inclusive of what it actually does - actually it connects to a huge amount of sex toys. [See a full list here \[nswf\]](https://iostindex.com/?filter0Availability=Available,DIY&filter1Connection=Digital). Other devices include Cockthings, so if you're not comfortable with putting Stockfish in your butthole, there's also the possibility of trying this with a Cockthing, and practically you'll be running *CockFish*.
+So I started looking into the possibilities and I found the project [Buttplug.io](https://buttplug.io/) \- the name of this project is not super inclusive of what it actually does - actually it connects to a huge amount of sex toys. [See a full list here \[nsfw\]](https://iostindex.com/?filter0Availability=Available,DIY&filter1Connection=Digital). Other devices include Cockthings, so if you're not comfortable with putting Stockfish in your butthole, there's also the possibility of trying this with a Cockthing, and practically you'll be running *CockFish*.
 
 Secondly, who else would possibly build this? I've created a Venn diagram to illustrate how rare the chances are someone would develop this.
 
@@ -52,7 +52,13 @@ As you can see by the diagram, if we'd have to wait for "the chosen one" with in
 #### Encoders
 
 - [x] (default) [A text to Morse Encoder](https://github.com/RonSijm/ButtFish/blob/main/RonSijm.ButtFish/Encoders/MorseEncoder.cs)
-- [x] [A simplified Pulse Encoder](https://github.com/RonSijm/ButtFish/blob/main/RonSijm.ButtFish/Encoders/SimplifiedPulseEncoder.cs) - you can change this in `appsettings.json` by using "SimplifiedPulse"
+- [x] [A simplified Pulse Encoder](https://github.com/RonSijm/ButtFish/blob/main/RonSijm.ButtFish/Encoders/SimplifiedPulseEncoder.cs) 
+   - `appsettings.json` -> Encoder -> "SimplifiedPulse"
+
+#### Config
+
+- [x] End Position Only [Expert] By just knowing the end position, a serious chess player would know intuitively which piece belongs there. ~ [Hikaru](https://youtu.be/ifJnWVSoyAY?t=431)
+   - `appsettings.json` -> EndPositionOnly -> true
 
 * * *
 
@@ -154,9 +160,6 @@ NASA and I have different priorities I suppose...
 - [Gigazine.net](https://gigazine.net/news/20220929-buttfish/) covered it in Japanese [[Google translate English](https://gigazine-net.translate.goog/news/20220929-buttfish/?_x_tr_sl=ja&_x_tr_tl=en)]
 - [Sohu.com](https://www.sohu.com/a/588661192_610300) covered it in Chinese [[Google translate English](https://www-sohu-com.translate.goog/a/588661192_610300?_x_tr_sl=zh-CN&_x_tr_tl=en&_x_tr_hl=en)]
 ![Sohucom2](https://user-images.githubusercontent.com/337928/193144038-f80dddbb-afd9-40ab-86db-7bff14a20494.png)
-
-
-
 
 ### Library and Mentions (outgoing)
 
