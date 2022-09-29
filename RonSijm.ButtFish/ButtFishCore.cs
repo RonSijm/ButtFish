@@ -28,7 +28,9 @@ public class ButtFishCore
 
         if (!File.Exists(stockfishPath))
         {
-            Console.WriteLine($"Stockfish executable expected to be at '{stockfishPath}'");
+            Console.WriteLine("Stockfish is missing");
+            Console.WriteLine($"Executable expected to be at '{stockfishPath}'");
+            Console.WriteLine("You can download it over here: https://github.com/RonSijm/ButtFish/blob/main/RonSijm.ButtFish/stockfish_15_x64_avx2.exe");
             return;
         }
 
