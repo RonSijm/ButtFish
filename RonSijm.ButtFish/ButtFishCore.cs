@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using RonSijm.ButtFish.Encoders;
 using RonSijm.ButtFish.Models;
 using RonSijm.ButtFish.Morse;
 using Stockfish.NET;
@@ -8,11 +9,18 @@ namespace RonSijm.ButtFish;
 public class ButtFishCore
 {
     private IStockfish _stockfish;
+    private readonly ICharacterEncoder _characterEncoder;
+
+    public ButtFishCore(ICharacterEncoder characterEncoder)
+    {
+        _characterEncoder = characterEncoder;
+    }
 
     public async Task Start()
     {
         Console.WriteLine("Welcome to Buttfish!");
         Console.WriteLine();
+        Console.WriteLine($"Using Encoder: {_characterEncoder.GetType().Name}");
         Console.WriteLine("Checking for stockfish executable...");
 
         var startupPath = Environment.CurrentDirectory;
@@ -63,13 +71,13 @@ public class ButtFishCore
         } while (true);
     }
 
-    private static async Task SendNextMoveToDevice(string nextPosition, IDeviceAbstraction device)
+    private async Task SendNextMoveToDevice(string nextPosition, IDeviceAbstraction device)
     {
         Console.WriteLine(nextPosition);
 
         foreach (var nextPositionChar in nextPosition)
         {
-            var morseCodeForChar = nextPositionChar.ToMorse();
+            var morseCodeForChar = _characterEncoder.EncodeCharacter(nextPositionChar);
 
             Console.Write($"({nextPositionChar})");
 
