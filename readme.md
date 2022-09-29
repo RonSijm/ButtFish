@@ -95,7 +95,7 @@ If you want to generate a FEN code on chess.com, you can go to a match, click on
 
 ### TODO
 
-- [ ] **buttplug.io verification** \- Due to not having any buttplugs myself, or other devices compatible with Buttplug.io, I've only build this project based on the documentation and samples provided by Buttplug.io. I'm looking to contact some of their people on discord to see if anyone has a device that should work with this project, and verify that it actually works
+- [ ] **buttplug.io verification** \- Due to not having any buttplugs myself, or other devices compatible with Buttplug.io, I've only built this project based on the documentation and samples provided by Buttplug.io. I'm looking to contact some of their people on discord to see if anyone has a device that should work with this project, and verify that it actually works
 - [ ] **Real world chess match testing** \- The chess world seems to assume that it's possible to accurately receive chess moves through your butthole, and use this to your advantage and even beat the final chess boss Magnus Carlsen with this. Since this has been a working theory, so far I haven't seen any attempts to replicate this. Hopefully this project with aid in this endeavor. Unfortunately I can barely play chess, nor understand Morse Code, so hopefully we'll be able to find some brave chessmaster grandmaster that's willing to 'take one for the team' (in the butt)
 - [ ] **Post vid** In the spirit of [WatchPeopleCode](https://www.reddit.com/r/WatchPeopleCode/) I recorded my development process. I haven't had time to edit it down and post it. Might if someone is actually interested (probably not)
 
@@ -104,7 +104,7 @@ If you want to generate a FEN code on chess.com, you can go to a match, click on
 The internet pointed out that I hadn't actually tested it out with a vibrating device. 
 Also there's a theory in computer science that [every programmer needs a rubby ducky](https://rubberduckdebugging.com/) - [for debugging purposes.](https://en.wikipedia.org/wiki/Rubber_duck_debugging). What I found is close enough
 
-After scrolling though the list of compatible Buttplug.io devices, I came across this [nonsensical device](https://www.libotoy.co.uk/designer-toys/carlos-app-remote-control-stimulator)
+After scrolling through the list of compatible Buttplug.io devices, I came across this [nonsensical device](https://www.libotoy.co.uk/designer-toys/carlos-app-remote-control-stimulator)
 ![ducky](https://user-images.githubusercontent.com/337928/192588741-dc7f6268-c87f-4890-a335-976910adda0e.png)
 
 It reminds me of a real-life representation of the famous internet meme dickbutt. 
@@ -136,7 +136,7 @@ Would you decide not to disclose this in (official) matches, then I'm in no way 
 ### Coverage and Mentions (incoming)
 
 [This project was covered by](https://www.vice.com/en/article/5d3w9z/did-hans-neimann-cheat-at-chess-with-a-sex-toy-this-coder-is-attempting-to-find-out) [Matthew Gault](https://www.vice.com/en/contributor/matthew-gault) a Staff Writer at Motherboard/VICE Media.
-Initially it on the font-page of Motherboard, on their front-page together with a live feed of NASA's DART mission - humanity's first strike against potential total annihilation by an asteroid in the future. 
+Initially it was on the front-page of Motherboard, on their front-page together with a live feed of NASA's DART mission - humanity's first strike against potential total annihilation by an asteroid in the future. 
 
 ![vice-front-page](https://user-images.githubusercontent.com/337928/192803688-06c840bd-352a-4e12-8c6f-49f187dd21b8.png)
 
