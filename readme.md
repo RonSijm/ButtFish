@@ -49,6 +49,11 @@ As you can see by the diagram, if we'd have to wait for "the chosen one" with in
 - [x] Encode the next best move into Morse Code
 - [x] Send the encoded Morse Code to the connected device
 
+#### Encoders
+
+- [x] (default) [A text to Morse Encoder](https://github.com/RonSijm/ButtFish/blob/main/RonSijm.ButtFish/Encoders/MorseEncoder.cs)
+- [x] [A simplified Pulse Encoder](https://github.com/RonSijm/ButtFish/blob/main/RonSijm.ButtFish/Encoders/SimplifiedPulseEncoder.cs) - you can change this in `appsettings.json` by using "SimplifiedPulse"
+
 * * *
 
 ### Demo
@@ -78,11 +83,11 @@ To use a Yeelight, you must enable developer mode for your Yeelight. To do so, d
 - Open Yeelight APP and go to “Device”.
 - Select the device you want to use.
 - Enable LAN Control
-- (option, if network discovery of the Yeelight does not seem to work:)
+- (optional), if network discovery of the Yeelight does not seem to work:)
 - Go to your Yeelight settings in the upper right corner
 - Click Device Info
 - You should now see a field "IP address". Use the value for manual mode.
-- 
+
 ---
 
 ### Data
