@@ -24,7 +24,7 @@ This project is mostly a meme.
 
 Firstly I didn't have much else to do this weekend, so it seemed like a fun thing to implement. I could not find any project making this kind of cheat possible. The closest mention I could find is [Sockfish](https://incoherency.co.uk/blog/stories/sockfish.html) \- A project by James Stanley where he implemented Stockfish in his shoes (or sock). I'm not entirely sure how he implemented it, or whether his implementation is open sourced.
 
-So I started looking into the possibilities and I found the project [Buttplug.io](https://buttplug.io/) \- the name of this project is not super inclusive of what it actually does - actually it connects to a huge amount of sex toys. [See a full list here \[nswf\]](https://iostindex.com/?filter0Availability=Available,DIY&filter1Connection=Digital). Other devices include Cockthings, so if you're not comfortable with putting Stockfish in your butthole, there's also the possibility of trying this with a Cockthing, and practically you'll be running *CockFish*.
+So I started looking into the possibilities and I found the project [Buttplug.io](https://buttplug.io/) \- the name of this project is not super inclusive of what it actually does - actually it connects to a huge amount of sex toys. [See a full list here \[nsfw\]](https://iostindex.com/?filter0Availability=Available,DIY&filter1Connection=Digital). Other devices include Cockthings, so if you're not comfortable with putting Stockfish in your butthole, there's also the possibility of trying this with a Cockthing, and practically you'll be running *CockFish*.
 
 Secondly, who else would possibly build this? I've created a Venn diagram to illustrate how rare the chances are someone would develop this.
 
