@@ -149,9 +149,14 @@ Someone is solving possibly the biggest crisis in human history, while the other
 
 NASA and I have different priorities I suppose...
 
-It was also shown on the VICE front-page of World News...
+- [It was also shown on the VICE front-page of World News...](https://user-images.githubusercontent.com/337928/192804145-49200e59-77b0-4d8d-b5f0-a9ca11fdfe20.png)
+- [Hikaru Nakamura](https://www.youtube.com/watch?v=ifJnWVSoyAY) Five-time U.S. Chess Champion and Chess Meme King himself read the vice article on youtube
+- [Gigazine.net](https://gigazine.net/news/20220929-buttfish/) covered it in Japanese [[Google translate English](https://gigazine-net.translate.goog/news/20220929-buttfish/?_x_tr_sl=ja&_x_tr_tl=en)]
+- [Sohu.com](https://www.sohu.com/a/588661192_610300) covered it in Chinese [[Google translate English](https://www-sohu-com.translate.goog/a/588661192_610300?_x_tr_sl=zh-CN&_x_tr_tl=en&_x_tr_hl=en)]
+![Sohucom2](https://user-images.githubusercontent.com/337928/193144038-f80dddbb-afd9-40ab-86db-7bff14a20494.png)
 
-https://user-images.githubusercontent.com/337928/192804145-49200e59-77b0-4d8d-b5f0-a9ca11fdfe20.png
+
+
 
 ### Library and Mentions (outgoing)
 
