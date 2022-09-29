@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Users\sijmr\OneDrive\Dev\Personal\Chess\Stockfish.NET\Stockfish.NET.csproj" />
+    <ProjectReference Include="..\Stockfish.NET\Stockfish.NET.csproj" />
   </ItemGroup>
 
   <ItemGroup>
