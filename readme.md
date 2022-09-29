@@ -14,7 +14,7 @@ This chess drama has been ongoing for the last couple weeks with everyone making
 
 The wildest accusation is that the cheating player might have been using a Buttplug - sending him information about the best moves though his butthole
 
-I'm not going to name the other player, google it I suppose. So far it hasn't been proven that he actually cheated, though he has received a lot of backlash already - so I assume this whole drama has been a huge pain the in butt for him already anyways. 🥁
+I'm not going to name the other player, google it I suppose. So far it hasn't been proven that he actually cheated, though he has received a lot of backlash already - so I assume this whole drama has been a huge pain in the butt for him already anyways. 🥁
 
 ---
 
