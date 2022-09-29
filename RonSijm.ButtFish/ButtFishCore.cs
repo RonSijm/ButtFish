@@ -1,18 +1,20 @@
 ﻿using System.Drawing;
 using RonSijm.ButtFish.Encoders;
 using RonSijm.ButtFish.Models;
-using RonSijm.ButtFish.Morse;
-using Stockfish.NET;
+using Stockfish.NET.Core;
 
 namespace RonSijm.ButtFish;
 
 public class ButtFishCore
 {
     private IStockfish _stockfish;
+
+    private readonly Options _options;
     private readonly ICharacterEncoder _characterEncoder;
 
-    public ButtFishCore(ICharacterEncoder characterEncoder)
+    public ButtFishCore(Options options, ICharacterEncoder characterEncoder)
     {
+        _options = options;
         _characterEncoder = characterEncoder;
     }
 
@@ -60,6 +62,11 @@ public class ButtFishCore
                     Console.WriteLine("Next Best Position:");
 
                     var nextPosition = _stockfish.GetBestMove();
+
+                    if (_options.EndPositionOnly)
+                    {
+                        nextPosition = nextPosition.Substring(2, 2);
+                    }
 
                     await SendNextMoveToDevice(nextPosition, device);
                 }

@@ -52,7 +52,13 @@ As you can see by the diagram, if we'd have to wait for "the chosen one" with in
 #### Encoders
 
 - [x] (default) [A text to Morse Encoder](https://github.com/RonSijm/ButtFish/blob/main/RonSijm.ButtFish/Encoders/MorseEncoder.cs)
-- [x] [A simplified Pulse Encoder](https://github.com/RonSijm/ButtFish/blob/main/RonSijm.ButtFish/Encoders/SimplifiedPulseEncoder.cs) - you can change this in `appsettings.json` by using "SimplifiedPulse"
+- [x] [A simplified Pulse Encoder](https://github.com/RonSijm/ButtFish/blob/main/RonSijm.ButtFish/Encoders/SimplifiedPulseEncoder.cs) 
+   - `appsettings.json` -> Encoder -> "SimplifiedPulse"
+
+#### Config
+
+- [x] End Position Only [Expert] By just knowing the end position, a serious chess player would know intuitively which piece belongs there. ~ [Hikaru](https://youtu.be/ifJnWVSoyAY?t=431)
+   - `appsettings.json` -> EndPositionOnly -> true
 
 * * *
 
@@ -154,9 +160,6 @@ NASA and I have different priorities I suppose...
 - [Gigazine.net](https://gigazine.net/news/20220929-buttfish/) covered it in Japanese [[Google translate English](https://gigazine-net.translate.goog/news/20220929-buttfish/?_x_tr_sl=ja&_x_tr_tl=en)]
 - [Sohu.com](https://www.sohu.com/a/588661192_610300) covered it in Chinese [[Google translate English](https://www-sohu-com.translate.goog/a/588661192_610300?_x_tr_sl=zh-CN&_x_tr_tl=en&_x_tr_hl=en)]
 ![Sohucom2](https://user-images.githubusercontent.com/337928/193144038-f80dddbb-afd9-40ab-86db-7bff14a20494.png)
-
-
-
 
 ### Library and Mentions (outgoing)
 

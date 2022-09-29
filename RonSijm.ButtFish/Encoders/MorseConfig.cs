@@ -1,4 +1,4 @@
-﻿namespace RonSijm.ButtFish.Morse;
+﻿namespace RonSijm.ButtFish.Encoders;
 
 /// <summary>
 /// *Morse Code timing rules*
