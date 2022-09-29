@@ -125,7 +125,7 @@ I don't really need your money, but if you feel like donating anything:
 
 ---
 
-## Code of Conduct and Ethnics
+## Code of Conduct and Ethics
 
 As mentioned before - this project is a meme. I do not endorse or encourage chess cheating in any way possible. Would you decide to try out this project yourself, you must notify your chess partner in advance that you're using chess augmentations though vibrations in your butthole.
 
