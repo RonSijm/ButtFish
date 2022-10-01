@@ -1,13 +1,13 @@
 ﻿using System.Drawing;
 using RonSijm.ButtFish.Encoders;
 using RonSijm.ButtFish.Models;
-using Stockfish.NET.Core;
+using RonSijm.UCIEngineInterlop.Core;
 
 namespace RonSijm.ButtFish;
 
 public class ButtFishCore
 {
-    private IStockfish _stockfish;
+    private IUCIEngine _iuciEngine;
 
     private readonly Options _options;
     private readonly ICharacterEncoder _characterEncoder;
@@ -23,23 +23,22 @@ public class ButtFishCore
         Console.WriteLine("Welcome to Buttfish!");
         Console.WriteLine();
         Console.WriteLine($"Using Encoder: {_characterEncoder.GetType().Name}");
-        Console.WriteLine("Checking for stockfish executable...");
+        Console.WriteLine("Checking engines");
 
-        var startupPath = Environment.CurrentDirectory;
-        var stockfishPath = $"{startupPath}\\stockfish_15_x64_avx2.exe";
+        var enginePath = EngineSelector.SelectEngine(_options.Engines);
 
-        if (!File.Exists(stockfishPath))
+        if (enginePath.Name == null)
         {
-            Console.WriteLine("Stockfish is missing");
-            Console.WriteLine($"Executable expected to be at '{stockfishPath}'");
-            Console.WriteLine("You can download it over here: https://github.com/RonSijm/ButtFish/blob/main/RonSijm.ButtFish/stockfish_15_x64_avx2.exe");
+            // Engine Selector has shown error already.
             return;
         }
+
+        Console.WriteLine($"Using engine: {enginePath.Name}");
 
         var deviceDiscoveryManager = new DeviceDiscoveryManager();
         using var device = await deviceDiscoveryManager.GetDevice();
 
-        _stockfish = new Stockfish.NET.Core.Stockfish(stockfishPath);
+        _iuciEngine = new UCIEngine(enginePath.Path);
 
         do
         {
@@ -49,19 +48,22 @@ public class ButtFishCore
                 Colorful.Console.WriteLine("Set the current chess FEN Position...", Color.Green);
                 var fenPosition = Console.ReadLine();
 
-                _stockfish.StartNewGame();
-                _stockfish.SetFenPosition(fenPosition);
+                _iuciEngine.StartNewGame();
+                _iuciEngine.SetFenPosition(fenPosition);
                 Console.WriteLine();
 
-                var (success, boardVisual) = _stockfish.GetBoardVisual();
-                Console.WriteLine(boardVisual);
+                var (success, boardVisual) = _iuciEngine.GetBoardVisual();
+                if (boardVisual != null)
+                {
+                    Console.WriteLine(boardVisual);
+                }
 
                 if (success)
                 {
                     Console.WriteLine();
                     Console.WriteLine("Next Best Position:");
 
-                    var nextPosition = _stockfish.GetBestMove();
+                    var nextPosition = _iuciEngine.GetBestMove();
 
                     if (_options.EndPositionOnly)
                     {
@@ -73,12 +75,14 @@ public class ButtFishCore
             }
             catch (Exception e)
             {
+                Console.WriteLine(); // Blank line because chess moves were not placed on a new line.
                 Colorful.Console.WriteLine("Error occurred.", Color.Red);
                 Colorful.Console.WriteLine(e, Color.Red);
                 Console.WriteLine("Sometimes the program can recover, otherwise it's probably better to restart.");
             }
         } while (true);
     }
+
 
     private async Task SendNextMoveToDevice(string nextPosition, IDeviceAbstraction device)
     {

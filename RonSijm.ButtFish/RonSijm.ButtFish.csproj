@@ -17,14 +17,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Stockfish.NET\Stockfish.NET.csproj" />
+    <ProjectReference Include="..\RonSijm.UCIEngineInterop\RonSijm.UCIEngineInterop.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="stockfish_15_x64_avx2.exe">
+    <None Update="Engines\stockfish_15_x64_avx2.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

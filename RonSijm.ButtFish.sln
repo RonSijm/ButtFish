@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RonSijm.ButtFish", "RonSijm.ButtFish\RonSijm.ButtFish.csproj", "{886356B5-77E1-4A12-8F7B-15B63167306B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stockfish.NET", "Stockfish.NET\Stockfish.NET.csproj", "{7B6169A2-4422-4ED7-946B-7739739FF62C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RonSijm.UCIEngineInterop", "RonSijm.UCIEngineInterop\RonSijm.UCIEngineInterop.csproj", "{C3633183-7A36-4A19-A8D0-8F3F7E0FCEEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{886356B5-77E1-4A12-8F7B-15B63167306B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{886356B5-77E1-4A12-8F7B-15B63167306B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{886356B5-77E1-4A12-8F7B-15B63167306B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7B6169A2-4422-4ED7-946B-7739739FF62C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B6169A2-4422-4ED7-946B-7739739FF62C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B6169A2-4422-4ED7-946B-7739739FF62C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B6169A2-4422-4ED7-946B-7739739FF62C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3633183-7A36-4A19-A8D0-8F3F7E0FCEEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3633183-7A36-4A19-A8D0-8F3F7E0FCEEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3633183-7A36-4A19-A8D0-8F3F7E0FCEEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3633183-7A36-4A19-A8D0-8F3F7E0FCEEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
