@@ -59,6 +59,13 @@ As you can see by the diagram, if we'd have to wait for "the chosen one" with in
 
 - [x] End Position Only [Expert] By just knowing the end position, a serious chess player would know intuitively which piece belongs there. ~ [Hikaru](https://youtu.be/ifJnWVSoyAY?t=431)
    - `appsettings.json` -> EndPositionOnly -> true
+   
+#### Tested and Supported Engines
+
+- [x] Stockfish (stockfish_15_x64_avx2.exe)
+- [x] Leela Chess Zero (Lc0) (lc0-v0.28.2-windows-gpu-nvidia-cuda)
+
+Technically any UCI compatible chess engine should work. But I haven't tested others yet.
 
 * * *
 
