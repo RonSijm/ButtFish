@@ -99,12 +99,12 @@ public class ButtFishCore
                 if (morseCodeChar == '.')
                 {
                     Console.Write('.');
-                    await device.SendDuration(MorseConfig.DotTime);
+                    await device.SendDuration(TimeUnitConfig.DotTime);
                 }
                 else if (morseCodeChar == '-')
                 {
                     Console.Write('-');
-                    await device.SendDuration(MorseConfig.DashTime);
+                    await device.SendDuration(TimeUnitConfig.DashTime);
                 }
                 else
                 {
@@ -114,11 +114,11 @@ public class ButtFishCore
 
                 // Wait 1 time unit
                 Console.Write(" ");
-                await Task.Delay(MorseConfig.SpaceBetweenSymbols);
+                await Task.Delay(TimeUnitConfig.SpaceBetweenSymbols);
             }
 
             // wait 3 time units
-            await Task.Delay(MorseConfig.SpaceBetweenLetters);
+            await Task.Delay(TimeUnitConfig.SpaceBetweenLetters);
         }
 
         Console.WriteLine();

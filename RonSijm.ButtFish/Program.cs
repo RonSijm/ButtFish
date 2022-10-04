@@ -17,6 +17,8 @@ public class Program
 
         ICharacterEncoder encoder = options.Encoder is not "SimplifiedPulse" ? new MorseEncoder() : new SimplifiedPulseEncoder();
 
+        TimeUnitConfig.TimeInit = options.TimeUnitInMS;
+
         var serviceProvider = new ServiceCollection()
             .AddSingleton<ButtFishCore>()
             .AddSingleton(encoder)
