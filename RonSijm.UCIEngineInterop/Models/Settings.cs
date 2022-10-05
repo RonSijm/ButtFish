@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RonSijm.UCIEngineInterlop.Models;
+namespace RonSijm.UCIEngineInterop.Models;
 
 public class Settings
 {

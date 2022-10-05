@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using RonSijm.UCIEngineInterlop.Exceptions;
-using RonSijm.UCIEngineInterlop.Models;
+using RonSijm.UCIEngineInterop.Exceptions;
+using RonSijm.UCIEngineInterop.Models;
 
-namespace RonSijm.UCIEngineInterlop.Core;
+namespace RonSijm.UCIEngineInterop.Core;
 
 public class UCIEngine : IUCIEngine
 {
-    public bool BoardVisualUnsupported { get; set; }
-
     private const int MaxTries = 200;
 
     private int _skillLevel;
@@ -27,7 +25,7 @@ public class UCIEngine : IUCIEngine
         {
             _skillLevel = value;
             Settings.SkillLevel = SkillLevel;
-            setOption("Skill level", SkillLevel.ToString());
+            SetOption("Skill level", SkillLevel.ToString());
         }
     }
 
@@ -42,7 +40,7 @@ public class UCIEngine : IUCIEngine
         SkillLevel = Settings.SkillLevel;
         foreach (var property in Settings.GetPropertiesAsDictionary())
         {
-            setOption(property.Key, property.Value);
+            SetOption(property.Key, property.Value);
         }
 
         StartNewGame();
@@ -72,7 +70,7 @@ public class UCIEngine : IUCIEngine
         throw new MaxTriesException();
     }
 
-    private void setOption(string name, string value)
+    private void SetOption(string name, string value)
     {
         Send($"setoption name {name} value {value}");
 
@@ -118,50 +116,6 @@ public class UCIEngine : IUCIEngine
     {
         StartNewGame();
         Send($"position startpos moves {MovesToString(moves)}");
-    }
-
-    public (bool Success, string Result) GetBoardVisual()
-    {
-        if (BoardVisualUnsupported)
-        {
-            return (true, null);
-        }
-
-        Send("d");
-        var board = "";
-        var lines = 0;
-        var tries = 0;
-
-        while (lines < 17)
-        {
-            if (tries > MaxTries)
-            {
-                throw new MaxTriesException();
-            }
-
-            var data = UCIEngineProcess.ReadLine();
-
-            if (data == null)
-            {
-                return (false, "Could not read line. Possibly invalid FEN position");
-            }
-
-            if (data == "error Unknown command: d")
-            {
-                BoardVisualUnsupported = true;
-                return (true, "board visual unsupported.");
-            }
-
-            if (data.Contains("+") || data.Contains("|"))
-            {
-                lines++;
-                board += $"{data}\n";
-            }
-
-            tries++;
-        }
-
-        return (true, board);
     }
 
     public string GetFenPosition()
@@ -222,14 +176,8 @@ public class UCIEngine : IUCIEngine
     public string GetBestMoveTime(int time = 1000)
     {
         GoTime(time);
-        var tries = 0;
         while (true)
         {
-            if (tries > MaxTries)
-            {
-                throw new MaxTriesException();
-            }
-
             var data = ReadLineAsList();
             if (data[0] == "bestmove")
             {
@@ -324,5 +272,6 @@ public class UCIEngine : IUCIEngine
     public void Dispose()
     {
         UCIEngineProcess?.Dispose();
+        GC.SuppressFinalize(this);
     }
 }
