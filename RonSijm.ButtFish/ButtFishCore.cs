@@ -1,7 +1,8 @@
 ﻿using System.Drawing;
+using RonSijm.ButtFish.Ascii;
 using RonSijm.ButtFish.Encoders;
 using RonSijm.ButtFish.Models;
-using RonSijm.UCIEngineInterlop.Core;
+using RonSijm.UCIEngineInterop.Core;
 
 namespace RonSijm.ButtFish;
 
@@ -52,11 +53,7 @@ public class ButtFishCore
                 _iuciEngine.SetFenPosition(fenPosition);
                 Console.WriteLine();
 
-                var (success, boardVisual) = _iuciEngine.GetBoardVisual();
-                if (boardVisual != null)
-                {
-                    Console.WriteLine(boardVisual);
-                }
+                var success = FENToOutputFacade.PaintBoard(fenPosition);
 
                 if (success)
                 {

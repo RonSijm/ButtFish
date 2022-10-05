@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace RonSijm.UCIEngineInterlop.Core;
+namespace RonSijm.UCIEngineInterop.Core;
 
 internal class UCIEngineProcess : IDisposable
 {

@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RonSijm.ButtFish", "RonSijm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RonSijm.UCIEngineInterop", "RonSijm.UCIEngineInterop\RonSijm.UCIEngineInterop.csproj", "{C3633183-7A36-4A19-A8D0-8F3F7E0FCEEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RonSijm.ButtFish.Tests", "RonSijm.ButtFish.Tests\RonSijm.ButtFish.Tests.csproj", "{F842C0FA-A492-484B-B5CB-CD14CF8B3D4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5D0244B8-79A1-4C2D-A34C-5CCBE4FEBDB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{C3633183-7A36-4A19-A8D0-8F3F7E0FCEEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3633183-7A36-4A19-A8D0-8F3F7E0FCEEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3633183-7A36-4A19-A8D0-8F3F7E0FCEEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F842C0FA-A492-484B-B5CB-CD14CF8B3D4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F842C0FA-A492-484B-B5CB-CD14CF8B3D4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F842C0FA-A492-484B-B5CB-CD14CF8B3D4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F842C0FA-A492-484B-B5CB-CD14CF8B3D4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F842C0FA-A492-484B-B5CB-CD14CF8B3D4A} = {5D0244B8-79A1-4C2D-A34C-5CCBE4FEBDB7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {70718CB4-1500-4491-9FA4-EFCAA3E2499F}
