@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RonSijm.UCIEngineInterlop.Exceptions;
+namespace RonSijm.UCIEngineInterop.Exceptions;
 
 public class MaxTriesException: Exception
 {

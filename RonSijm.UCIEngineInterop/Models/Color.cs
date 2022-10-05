@@ -1,4 +1,4 @@
-﻿namespace RonSijm.UCIEngineInterlop.Models;
+﻿namespace RonSijm.UCIEngineInterop.Models;
 
 public enum Color
 {
