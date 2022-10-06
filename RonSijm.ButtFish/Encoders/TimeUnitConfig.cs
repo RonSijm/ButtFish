@@ -15,9 +15,9 @@ public static class TimeUnitConfig
 {
     public static int TimeInit { get; set; }
 
-    public static readonly int DotTime = TimeInit;
-    public static readonly int DashTime = TimeInit * 3;
-    public static readonly int SpaceBetweenSymbols = TimeInit;
-    public static readonly int SpaceBetweenLetters = TimeInit * 3;
-    public static readonly int SpaceBetweenWords = TimeInit * 7;
+    public static int DotTime => TimeInit;
+    public static int DashTime => TimeInit * 3;
+    public static int SpaceBetweenSymbols => TimeInit;
+    public static int SpaceBetweenLetters => TimeInit * 3;
+    public static int SpaceBetweenWords => TimeInit * 7;
 }
