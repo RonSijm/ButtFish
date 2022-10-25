@@ -135,11 +135,9 @@ You're lucky that I'm this dedicated to stupid memes. I'll let you know how it g
 
 ## Donate
 
-I don't really need your money, but if you feel like donating anything:
+I don't really need your money, but it would be cool to see that 0 turn into a 1: 
 
-- Eth: 0xEc4AB6855b2A58F27448c9Bb40E778e4D238FEe2
-- Paypal: [paypal.me/ronsijm](https://paypal.me/ronsijm)
-- I signed up for the github sponsor program, that's still pending though
+[![](https://img.shields.io/github/sponsors/ronsijm?label=Sponsor&logo=GitHub)](https://github.com/sponsors/ronsijm)
 
 ---
 
