@@ -9,7 +9,15 @@ public class ButtplugConnector
 
     public async Task<List<IDeviceAbstraction>> GetDiscoveredDevices(string discoverAddress = null)
     {
-        Console.WriteLine("Starting to scan for ButtPlug Devices...");
+        if (discoverAddress == null)
+        {
+            Console.WriteLine("Starting to scan for ButtPlug Devices...");
+        }
+        else
+        {
+            Console.WriteLine($"Attempting to connect to {discoverAddress}...");
+        }
+
         Console.WriteLine("Will return results after 5 seconds.");
 
         if (discoverAddress == null)
@@ -18,6 +26,11 @@ public class ButtplugConnector
         }
         else
         {
+            if (!discoverAddress.Contains("://"))
+            {
+                discoverAddress = $"ws://{discoverAddress}";
+            }
+
             await _client.ConnectAsync(new ButtplugWebsocketConnectorOptions(new Uri(discoverAddress)));
         }
 
