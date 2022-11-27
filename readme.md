@@ -81,9 +81,25 @@ A demo of discovering devices on the network
 A demo of manually entering a Yeelight address
 ![manual](https://user-images.githubusercontent.com/337928/192335161-9cd095a1-133b-4b0a-930b-e5174c1aa7b5.gif)
 
-#### Side by side
+#### Buttplug.io side by side
 
-A demo of a Yeelight connector running side by side with the application
+The internet pointed out that I hadn't actually tested it out with a vibrating device. 
+Also there's a theory in computer science that [every programmer needs a rubby ducky](https://rubberduckdebugging.com/) - [for debugging purposes.](https://en.wikipedia.org/wiki/Rubber_duck_debugging). What I found is close enough
+
+After scrolling through the list of compatible Buttplug.io devices, I came across this nonsensical device
+![ducky](https://user-images.githubusercontent.com/337928/192588741-dc7f6268-c87f-4890-a335-976910adda0e.png)
+
+It reminds me of a real-life representation of the famous internet meme dickbutt. 
+
+I also don't have a rubber duck for debugging purposes yet, so I count this as a win-win-win.
+
+So heres a demo of a Buttplug.io connected to Libo Carlos - side by side with the application
+
+[sidebyside-butplugio.webm](https://user-images.githubusercontent.com/337928/204144604-b0513f22-c1d4-43f8-9881-f65ebcddca69.webm)
+
+#### Yeelight side by side
+
+A demo of a Yeelight connector - side by side with the application
 
 [sidebyside-yeelight.webm](https://user-images.githubusercontent.com/337928/192337315-964201e4-0a23-49bc-8889-a079357967c3.webm)
 
@@ -113,23 +129,8 @@ If you want to generate a FEN code on chess.com, you can go to a match, click on
 
 ### TODO
 
-- [ ] **buttplug.io verification** \- Due to not having any buttplugs myself, or other devices compatible with Buttplug.io, I've only built this project based on the documentation and samples provided by Buttplug.io. I'm looking to contact some of their people on discord to see if anyone has a device that should work with this project, and verify that it actually works
 - [ ] **Real world chess match testing** \- The chess world seems to assume that it's possible to accurately receive chess moves through your butthole, and use this to your advantage and even beat the final chess boss Magnus Carlsen with this. Since this has been a working theory, so far I haven't seen any attempts to replicate this. Hopefully this project with aid in this endeavor. Unfortunately I can barely play chess, nor understand Morse Code, so hopefully we'll be able to find some brave chessmaster grandmaster that's willing to 'take one for the team' (in the butt)
 - [ ] **Post vid** In the spirit of [WatchPeopleCode](https://www.reddit.com/r/WatchPeopleCode/) I recorded my development process. I haven't had time to edit it down and post it. Might if someone is actually interested (probably not)
-
-### Testing (buttplug.io verification)
-
-The internet pointed out that I hadn't actually tested it out with a vibrating device. 
-Also there's a theory in computer science that [every programmer needs a rubby ducky](https://rubberduckdebugging.com/) - [for debugging purposes.](https://en.wikipedia.org/wiki/Rubber_duck_debugging). What I found is close enough
-
-After scrolling through the list of compatible Buttplug.io devices, I came across this [nonsensical device](https://www.libotoy.co.uk/designer-toys/carlos-app-remote-control-stimulator)
-![ducky](https://user-images.githubusercontent.com/337928/192588741-dc7f6268-c87f-4890-a335-976910adda0e.png)
-
-It reminds me of a real-life representation of the famous internet meme dickbutt. 
-
-I also don't have a rubber duck for debugging purposes yet, so I count this as a win-win-win. I ordered this thing, it might take a couple of days to ship.
-
-You're lucky that I'm this dedicated to stupid memes. I'll let you know how it goes once it arrives
 
 ---
 
