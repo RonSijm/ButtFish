@@ -4,27 +4,16 @@ namespace RonSijm.UCIEngineInterop.Models;
 
 public class Settings
 {
-    public int Contempt { get; set; }
-    public int Threads { get; set; }
-    public bool Ponder { get; set; }
-    public int MultiPV { get; set; }
+    public int Threads { get; }
+    public bool Ponder { get; }
+    public int MultiPV { get; }
     public int SkillLevel { get; set; }
-    public int MoveOverhead { get; set; }
-    public int SlowMover { get; set; }
-    public bool UCIChess960 { get; set; }
+    public int MoveOverhead { get; }
+    public int SlowMover { get; }
+    public bool UCIChess960 { get; }
 
-    public Settings(
-        int contempt = 0,
-        int threads = 0,
-        bool ponder = false,
-        int multiPV = 1,
-        int skillLevel = 20,
-        int moveOverhead = 30,
-        int slowMover = 80,
-        bool uciChess960 = false
-    )
+    public Settings(int threads = 0, bool ponder = false, int multiPV = 1, int skillLevel = 20, int moveOverhead = 30, int slowMover = 80, bool uciChess960 = false)
     {
-        Contempt = contempt;
         Ponder = ponder;
         Threads = threads;
         MultiPV = multiPV;

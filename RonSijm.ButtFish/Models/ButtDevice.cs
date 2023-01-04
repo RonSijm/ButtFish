@@ -4,14 +4,14 @@ namespace RonSijm.ButtFish.Models;
 
 public class ButtDevice : IDeviceAbstraction
 {
-    public string Name { get; set; }
+    private readonly string _name;
 
     private readonly ButtplugClientDevice _device;
 
     public ButtDevice(ButtplugClientDevice device)
     {
         _device = device;
-        Name = _device.Name;
+        _name = _device.Name;
     }
 
     public async Task SendDuration(int time)
@@ -28,6 +28,6 @@ public class ButtDevice : IDeviceAbstraction
 
     public override string ToString()
     {
-        return Name;
+        return _name;
     }
 }
