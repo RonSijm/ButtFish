@@ -12,8 +12,9 @@ public static class FENToCharArrayConverter
     public static char[,] ConvertToCharArray(this string fenCode)
     {
         var result = new char[8, 8];
+        var fenLineSplit = fenCode.Split(' ');
 
-        var piecePositionsArray = ReplaceDigitsWithEmptyStrings(fenCode.Split(' ')[0]).Split('/');
+        var piecePositionsArray = ReplaceDigitsWithEmptyStrings(fenLineSplit[0]).Split('/');
 
         for (var index = 0; index < piecePositionsArray.Length; index++)
         {
@@ -26,6 +27,22 @@ public static class FENToCharArrayConverter
         }
 
         return result;
+    }
+
+    public static bool IsWhiteToMove(this string fenCode)
+    {
+        var fenLineSplit = fenCode.Split(' ');
+        if (fenLineSplit[1] == "w")
+        {
+            return true;
+        }
+
+        if (fenLineSplit[1] == "b")
+        {
+            return false;
+        }
+
+        throw new ArgumentOutOfRangeException();
     }
 
     private static string ReplaceDigitsWithEmptyStrings(string position)

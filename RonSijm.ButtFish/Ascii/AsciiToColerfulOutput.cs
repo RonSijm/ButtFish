@@ -2,7 +2,7 @@
 
 namespace RonSijm.ButtFish.Ascii;
 
-public static class AsciiToColerfulOutput
+public static class AsciiToColorfulOutput
 {
     public static void AsciiToConsole(string ascii)
     {

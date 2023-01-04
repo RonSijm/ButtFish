@@ -12,9 +12,9 @@ public class UCIEngine : IUCIEngine
 
     private int _skillLevel;
 
-    private UCIEngineProcess UCIEngineProcess { get; set; }
+    private UCIEngineProcess UCIEngineProcess { get; }
 
-    public Settings Settings { get; set; }
+    public Settings Settings { get; }
 
     public int Depth { get; set; }
 

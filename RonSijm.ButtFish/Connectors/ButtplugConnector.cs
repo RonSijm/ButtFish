@@ -9,15 +9,8 @@ public class ButtplugConnector
 
     public async Task<List<IDeviceAbstraction>> GetDiscoveredDevices(string discoverAddress = null)
     {
-        if (discoverAddress == null)
-        {
-            Console.WriteLine("Starting to scan for ButtPlug Devices...");
-        }
-        else
-        {
-            Console.WriteLine($"Attempting to connect to {discoverAddress}...");
-        }
-
+        Console.WriteLine(discoverAddress == null ? "Starting to scan for ButtPlug Devices..." : $"Attempting to connect to {discoverAddress}...");
+        
         Console.WriteLine("Will return results after 5 seconds.");
 
         if (discoverAddress == null)

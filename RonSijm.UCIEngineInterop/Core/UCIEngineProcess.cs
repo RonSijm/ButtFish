@@ -5,8 +5,8 @@ namespace RonSijm.UCIEngineInterop.Core;
 
 internal class UCIEngineProcess : IDisposable
 {
-    private ProcessStartInfo ProcessStartInfo { get; set; }
-    private Process Process { get; set; }
+    private ProcessStartInfo ProcessStartInfo { get; }
+    private Process Process { get; }
 
     public UCIEngineProcess(string path)
     {

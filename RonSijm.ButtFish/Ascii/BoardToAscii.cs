@@ -4,21 +4,23 @@ namespace RonSijm.ButtFish.Ascii;
 
 public static class BoardToAscii
 {
-    public static string ToAscii(char[,] model)
+    public static string ToAscii(char[,] model, bool isWhiteToMove)
     {
+        var lastLoop = isWhiteToMove ? 7 : 0;
+
         var bob = new StringBuilder();
         bob.AppendLine("   ╔═══╤═══╤═══╤═══╤═══╤═══╤═══╤═══╗");
 
-        for (var horizontal = 8 - 1; horizontal >= 0; horizontal--)
+        foreach (var horizontal in Loop.Between(0, 8, !isWhiteToMove))
         {
-            bob.Append(" " + (horizontal + 1) + " ║");
+            bob.Append(" " + (8 - horizontal) + " ║");
 
-            for (var vertical = 0; vertical < 8; vertical++)
+            foreach (var vertical in Loop.Between(0, 8, !isWhiteToMove))
             {
                 bob.Append(' ');
                 bob.Append(model[horizontal, vertical]);
 
-                if (vertical != 7)
+                if (vertical != lastLoop)
                 {
                     bob.Append(" │");
                 }
@@ -30,12 +32,12 @@ public static class BoardToAscii
 
             bob.AppendLine("║");
 
-            bob.AppendLine(horizontal != 0
+            bob.AppendLine(horizontal != lastLoop
                 ? "   ╟───┼───┼───┼───┼───┼───┼───┼───╢"
                 : "   ╚═══╧═══╧═══╧═══╧═══╧═══╧═══╧═══╝");
         }
 
-        bob.AppendLine("     a   b   c   d   e   f   g   h  ");
+        bob.AppendLine(isWhiteToMove ? "     a   b   c   d   e   f   g   h  " : "     h   g   f   e   d   c   b   a  ");
 
         return bob.ToString();
     }

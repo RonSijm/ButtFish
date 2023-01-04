@@ -93,14 +93,7 @@ public class DeviceDiscoveryManager
         {
             var deviceAbstraction = discoveredDevices[index];
 
-            if (deviceAbstraction is YeelightDevice)
-            {
-                Console.WriteLine($"{(index + 1)} - Yeelight device: {deviceAbstraction}");
-            }
-            else
-            {
-                Console.WriteLine($"{(index + 1)} - Butt device: {deviceAbstraction}");
-            }
+            Console.WriteLine(deviceAbstraction is YeelightDevice ? $"{(index + 1)} - Yeelight device: {deviceAbstraction}" : $"{(index + 1)} - Butt device: {deviceAbstraction}");
         }
 
         Colorful.Console.WriteLine("Which device do you want to use?", Color.Green);
