@@ -61,7 +61,8 @@ public class UCIEngine : IUCIEngine
         {
             ++tries;
 
-            if (UCIEngineProcess.ReadLine() == "readyok")
+            var engineReadLine = UCIEngineProcess.ReadLine();
+            if (engineReadLine == "readyok")
             {
                 return true;
             }

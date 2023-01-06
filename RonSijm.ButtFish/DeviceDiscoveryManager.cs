@@ -87,7 +87,8 @@ public class DeviceDiscoveryManager
             return null;
         }
 
-        Console.WriteLine("Discovered the following devices:");
+        Console.WriteLine();
+        Colorful.Console.WriteLine("Discovered the following devices:", Color.Green);
 
         for (var index = 0; index < discoveredDevices.Count; index++)
         {
@@ -96,6 +97,7 @@ public class DeviceDiscoveryManager
             Console.WriteLine(deviceAbstraction is YeelightDevice ? $"{(index + 1)} - Yeelight device: {deviceAbstraction}" : $"{(index + 1)} - Butt device: {deviceAbstraction}");
         }
 
+        Console.WriteLine();
         Colorful.Console.WriteLine("Which device do you want to use?", Color.Green);
         var deviceChoice = Console.ReadKey().Key.ToNumber();
 

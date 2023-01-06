@@ -3,6 +3,7 @@ using RonSijm.ButtFish.Ascii;
 using RonSijm.ButtFish.Encoders;
 using RonSijm.ButtFish.Models;
 using RonSijm.UCIEngineInterop.Core;
+using RonSijm.UCIEngineInterop.Exceptions;
 
 namespace RonSijm.ButtFish;
 
@@ -21,10 +22,9 @@ public class ButtFishCore
 
     public async Task Start()
     {
-        Console.WriteLine("Welcome to Buttfish!");
+        Colorful.Console.WriteLine("Welcome to Buttfish!", Color.GreenYellow);
         Console.WriteLine();
         Console.WriteLine($"Using Encoder: {_characterEncoder.GetType().Name}");
-        Console.WriteLine("Checking engines");
 
         var enginePath = EngineSelector.SelectEngine(_options.Engines);
 
@@ -41,22 +41,31 @@ public class ButtFishCore
 
         _iuciEngine = new UCIEngine(enginePath.Path);
 
+        Console.WriteLine();
+        Console.WriteLine();
+
         do
         {
             try
             {
-                Console.WriteLine();
                 Colorful.Console.WriteLine("Set the current chess FEN Position...", Color.Green);
                 var fenPosition = Console.ReadLine();
 
-                _iuciEngine.StartNewGame();
-                _iuciEngine.SetFenPosition(fenPosition);
-                Console.WriteLine();
+                // If you just send a whitespace, the engine keeps waiting for the rest of the command
+                if (string.IsNullOrWhiteSpace(fenPosition))
+                {
+                    Colorful.Console.WriteLine("You didn't have to press enter there...", Color.Orange);
+                    continue;
+                }
 
                 var success = FENToOutputFacade.PaintBoard(fenPosition);
 
                 if (success)
                 {
+                    _iuciEngine.StartNewGame();
+                    _iuciEngine.SetFenPosition(fenPosition);
+                    Console.WriteLine();
+
                     Console.WriteLine();
                     Console.WriteLine("Next Best Position:");
 
@@ -68,13 +77,38 @@ public class ButtFishCore
                     }
 
                     await SendNextMoveToDevice(nextPosition, device);
+                    Console.WriteLine();
                 }
+                else
+                {
+                    Colorful.Console.WriteLine("That doesn't look right to me...", Color.Red);
+                    Colorful.Console.Write("Try Again - ", Color.Green);
+                }
+            }
+            // Error that happens when the chess-engine gets fucked up somehow.
+            catch(MaxTriesException e)
+            {
+                Colorful.Console.WriteLine("Error occurred.", Color.Red);
+                Colorful.Console.WriteLine(e, Color.Red);
+
+                Colorful.Console.WriteLine("Recycling chess engine...", Color.Green);
+                _iuciEngine = new UCIEngine(enginePath.Path);
+
+                // We don't automatically set the old FEN code, otherwise if you added a broken
+                // FEN code, the engine gets in a broken loop
+                Colorful.Console.WriteLine("Please try again", Color.Green);
             }
             catch (Exception e)
             {
                 Console.WriteLine(); // Blank line because chess moves were not placed on a new line.
                 Colorful.Console.WriteLine("Error occurred.", Color.Red);
                 Colorful.Console.WriteLine(e, Color.Red);
+                
+                if (!string.IsNullOrWhiteSpace(e.Source))
+                {
+                    Colorful.Console.WriteLine($"Source:{e.Source}", Color.Red);
+                }
+
                 Console.WriteLine("Sometimes the program can recover, otherwise it's probably better to restart.");
             }
         } while (true);
@@ -119,6 +153,6 @@ public class ButtFishCore
         }
 
         Console.WriteLine();
-        Console.WriteLine("Finished sending command to device.");
+        Colorful.Console.WriteLine("Finished sending command to device.", Color.Green);
     }
 }
