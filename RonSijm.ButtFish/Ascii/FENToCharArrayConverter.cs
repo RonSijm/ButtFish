@@ -16,6 +16,11 @@ public static class FENToCharArrayConverter
 
         var piecePositionsArray = ReplaceDigitsWithEmptyStrings(fenLineSplit[0]).Split('/');
 
+        if (piecePositionsArray.Length != 8)
+        {
+            return null;
+        }
+
         for (var index = 0; index < piecePositionsArray.Length; index++)
         {
             var row = piecePositionsArray[index];
