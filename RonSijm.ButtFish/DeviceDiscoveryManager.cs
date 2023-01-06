@@ -1,5 +1,4 @@
 ﻿using RonSijm.ButtFish.Connectors;
-using RonSijm.ButtFish.Helpers;
 using RonSijm.ButtFish.Models;
 using Color = System.Drawing.Color;
 
@@ -7,9 +6,9 @@ namespace RonSijm.ButtFish;
 
 public class DeviceDiscoveryManager
 {
-    public async Task<IDeviceAbstraction> GetDevice()
+    public async Task<IList<IDeviceAbstraction>> GetDevice()
     {
-        IDeviceAbstraction device;
+        IList<IDeviceAbstraction> device;
 
         do
         {
@@ -37,7 +36,7 @@ public class DeviceDiscoveryManager
         return device;
     }
 
-    private static async Task<IDeviceAbstraction> GetDeviceByChoice(ConsoleKey usageChoice)
+    private static async Task<IList<IDeviceAbstraction>> GetDeviceByChoice(ConsoleKey usageChoice)
     {
         if (usageChoice == ConsoleKey.D1)
         {
@@ -51,8 +50,10 @@ public class DeviceDiscoveryManager
             Colorful.Console.WriteLine("Please provide Yeelight IP or hostname...", Color.Green);
             var ipAddress = Console.ReadLine();
             Console.WriteLine();
-            
-            return await yeelightConnector.GetDeviceToUse(ipAddress);
+
+            var device = await yeelightConnector.GetDeviceToUse(ipAddress);
+
+            return new List<IDeviceAbstraction>(){ device };
         }
         else if (usageChoice == ConsoleKey.D3)
         {
@@ -69,7 +70,7 @@ public class DeviceDiscoveryManager
         return null;
     }
 
-    private static async Task<IDeviceAbstraction> GetDeviceFromDiscovery()
+    private static async Task<IList<IDeviceAbstraction>> GetDeviceFromDiscovery()
     {
         var connector = new DeviceConnector();
 
@@ -77,7 +78,7 @@ public class DeviceDiscoveryManager
         return ListDiscoveredDevices(discoveredDevices);
     }
 
-    private static IDeviceAbstraction ListDiscoveredDevices(List<IDeviceAbstraction> discoveredDevices)
+    private static List<IDeviceAbstraction> ListDiscoveredDevices(List<IDeviceAbstraction> discoveredDevices)
     {
         if (!discoveredDevices.Any())
         {
@@ -98,11 +99,34 @@ public class DeviceDiscoveryManager
         }
 
         Console.WriteLine();
-        Colorful.Console.WriteLine("Which device do you want to use?", Color.Green);
-        var deviceChoice = Console.ReadKey().Key.ToNumber();
+        Colorful.Console.WriteLine("Which devices do you want to use?", Color.Green);
+        Colorful.Console.WriteLine("Separate the devices you want to use by a space", Color.Green);
 
-        var device = discoveredDevices[deviceChoice - 1];
+        var deviceChoices = Console.ReadLine();
 
-        return device;
+        if (string.IsNullOrWhiteSpace(deviceChoices))
+        {
+            return null;
+        }
+
+        var devicesSplit = deviceChoices.Split(" ");
+
+        var output = new List<IDeviceAbstraction>();
+
+        foreach (var deviceString in devicesSplit)
+        {
+            var deviceIntParseResult = int.TryParse(deviceString, out var deviceId);
+
+            if (!deviceIntParseResult)
+            {
+                Colorful.Console.WriteLine($"'{deviceString}' is an invalid option.", Color.Red);
+            }
+
+            var device = discoveredDevices[deviceId - 1];
+
+            output.Add(device);
+        }
+
+        return output;
     }
 }
