@@ -37,7 +37,7 @@ public class ButtFishCore
         Console.WriteLine($"Using engine: {enginePath.Name}");
 
         var deviceDiscoveryManager = new DeviceDiscoveryManager();
-        using var device = await deviceDiscoveryManager.GetDevice();
+        var devices = await deviceDiscoveryManager.GetDevice();
 
         _iuciEngine = new UCIEngine(enginePath.Path);
 
@@ -76,7 +76,7 @@ public class ButtFishCore
                         nextPosition = nextPosition.Substring(2, 2);
                     }
 
-                    await SendNextMoveToDevice(nextPosition, device);
+                    await SendNextMoveToDevice(nextPosition, devices);
                     Console.WriteLine();
                 }
                 else
@@ -115,7 +115,7 @@ public class ButtFishCore
     }
 
 
-    private async Task SendNextMoveToDevice(string nextPosition, IDeviceAbstraction device)
+    private async Task SendNextMoveToDevice(string nextPosition, IList<IDeviceAbstraction> devices)
     {
         Console.WriteLine(nextPosition);
 
@@ -127,21 +127,25 @@ public class ButtFishCore
 
             foreach (var morseCodeChar in morseCodeForChar)
             {
+                var durationToSend = 0;
+
                 if (morseCodeChar == '.')
                 {
                     Console.Write('.');
-                    await device.SendDuration(TimeUnitConfig.DotTime);
+                    durationToSend = TimeUnitConfig.DotTime;
                 }
                 else if (morseCodeChar == '-')
                 {
                     Console.Write('-');
-                    await device.SendDuration(TimeUnitConfig.DashTime);
+                    durationToSend = TimeUnitConfig.DashTime;
                 }
                 else
                 {
                     // Should never happen
                     throw new ArgumentException(nameof(morseCodeChar));
                 }
+
+                Task.WaitAll(devices.Select(device => device.SendDuration(durationToSend)).ToArray());
 
                 // Wait 1 time unit
                 Console.Write(" ");
