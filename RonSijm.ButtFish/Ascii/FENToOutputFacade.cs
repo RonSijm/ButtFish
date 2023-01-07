@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace RonSijm.ButtFish.Ascii;
+﻿namespace RonSijm.ButtFish.Ascii;
 
 public static class FENToOutputFacade
 {
@@ -23,7 +21,7 @@ public static class FENToOutputFacade
         }
         catch (Exception e)
         {
-            Colorful.Console.WriteLine($"Error: {e}", Color.Red);
+            Console.WriteLine($"Error: {e}", Color.Red);
             return false;
         }
     }

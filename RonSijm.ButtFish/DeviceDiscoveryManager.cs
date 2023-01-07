@@ -1,8 +1,4 @@
-﻿using RonSijm.ButtFish.Connectors;
-using RonSijm.ButtFish.Models;
-using Color = System.Drawing.Color;
-
-namespace RonSijm.ButtFish;
+﻿namespace RonSijm.ButtFish;
 
 public class DeviceDiscoveryManager
 {
@@ -13,7 +9,7 @@ public class DeviceDiscoveryManager
         do
         {
             Console.WriteLine();
-            Colorful.Console.WriteLine("How would you like to use this tool?", Color.Green);
+            Console.WriteLine("How would you like to use this tool?", Color.Green);
             Console.WriteLine("Options:");
             Console.WriteLine("1 - Discover Yeelight or Buttplug devices");
             Console.WriteLine("2 - Manually connect Yeelight IP Address");
@@ -26,13 +22,14 @@ public class DeviceDiscoveryManager
 
             if (device == null)
             {
-                Colorful.Console.WriteLine("Invalid choice or could not connect to device.", Color.Red);
-                Colorful.Console.WriteLine("Please try again...", Color.Red);
+                Console.WriteLine("Invalid choice or could not connect to device.", Color.Red);
+                Console.WriteLine("Please try again...", Color.Red);
                 Console.WriteLine();
             }
 
         } while (device == null);
 
+        device.Add(new ConsoleOutputDevice());
         return device;
     }
 
@@ -42,12 +39,13 @@ public class DeviceDiscoveryManager
         {
             return await GetDeviceFromDiscovery();
         }
-        else if (usageChoice == ConsoleKey.D2)
+
+        if (usageChoice == ConsoleKey.D2)
         {
             var yeelightConnector = new YeelightConnector();
 
             Console.WriteLine();
-            Colorful.Console.WriteLine("Please provide Yeelight IP or hostname...", Color.Green);
+            Console.WriteLine("Please provide Yeelight IP or hostname...", Color.Green);
             var ipAddress = Console.ReadLine();
             Console.WriteLine();
 
@@ -55,12 +53,13 @@ public class DeviceDiscoveryManager
 
             return new List<IDeviceAbstraction>(){ device };
         }
-        else if (usageChoice == ConsoleKey.D3)
+
+        if (usageChoice == ConsoleKey.D3)
         {
             var buttplugConnector = new ButtplugConnector();
 
             Console.WriteLine();
-            Colorful.Console.WriteLine("Please provide Buttplug Uri...", Color.Green);
+            Console.WriteLine("Please provide Buttplug Uri...", Color.Green);
             var serverUri = Console.ReadLine();
 
             var devices = await buttplugConnector.GetDiscoveredDevices(serverUri);
@@ -83,13 +82,13 @@ public class DeviceDiscoveryManager
         if (!discoveredDevices.Any())
         {
             Console.WriteLine();
-            Colorful.Console.WriteLine("No devices discovered.", Color.Yellow);
+            Console.WriteLine("No devices discovered.", Color.Yellow);
             Console.WriteLine();
             return null;
         }
 
         Console.WriteLine();
-        Colorful.Console.WriteLine("Discovered the following devices:", Color.Green);
+        Console.WriteLine("Discovered the following devices:", Color.Green);
 
         for (var index = 0; index < discoveredDevices.Count; index++)
         {
@@ -99,8 +98,8 @@ public class DeviceDiscoveryManager
         }
 
         Console.WriteLine();
-        Colorful.Console.WriteLine("Which devices do you want to use?", Color.Green);
-        Colorful.Console.WriteLine("Separate the devices you want to use by a space", Color.Green);
+        Console.WriteLine("Which devices do you want to use?", Color.Green);
+        Console.WriteLine("Separate the devices you want to use by a space - then press enter.", Color.Green);
 
         var deviceChoices = Console.ReadLine();
 
@@ -119,7 +118,7 @@ public class DeviceDiscoveryManager
 
             if (!deviceIntParseResult)
             {
-                Colorful.Console.WriteLine($"'{deviceString}' is an invalid option.", Color.Red);
+                Console.WriteLine($"'{deviceString}' is an invalid option.", Color.Red);
             }
 
             var device = discoveredDevices[deviceId - 1];

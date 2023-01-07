@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using RonSijm.UCIEngineInterop.Exceptions;
-using RonSijm.UCIEngineInterop.Models;
+﻿// ReSharper disable StringLiteralTypo
 
 namespace RonSijm.UCIEngineInterop.Core;
 
@@ -14,7 +10,7 @@ public class UCIEngine : IUCIEngine
 
     private UCIEngineProcess UCIEngineProcess { get; }
 
-    public Settings Settings { get; }
+    private Settings Settings { get; }
 
     public int Depth { get; set; }
 
@@ -24,7 +20,6 @@ public class UCIEngine : IUCIEngine
         set
         {
             _skillLevel = value;
-            Settings.SkillLevel = SkillLevel;
             SetOption("Skill level", SkillLevel.ToString());
         }
     }

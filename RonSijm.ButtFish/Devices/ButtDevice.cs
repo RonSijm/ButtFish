@@ -1,6 +1,6 @@
 ﻿using Buttplug;
 
-namespace RonSijm.ButtFish.Models;
+namespace RonSijm.ButtFish.Devices;
 
 public class ButtDevice : IDeviceAbstraction
 {
@@ -24,6 +24,7 @@ public class ButtDevice : IDeviceAbstraction
     public void Dispose()
     {
         _device.Dispose();
+        GC.SuppressFinalize(this);
     }
 
     public override string ToString()

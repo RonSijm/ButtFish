@@ -1,6 +1,4 @@
-﻿using RonSijm.ButtFish.Models;
-
-namespace RonSijm.ButtFish.Connectors;
+﻿namespace RonSijm.ButtFish.Connectors;
 
 public class DeviceConnector
 {

@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace RonSijm.ButtFish.Ascii;
+﻿namespace RonSijm.ButtFish.Ascii;
 
 public static class AsciiToColorfulOutput
 {
@@ -10,16 +8,16 @@ public static class AsciiToColorfulOutput
         {
             if (char.IsUpper(character))
             {
-                Colorful.Console.Write(character, Color.DarkSeaGreen);
+                Console.Write(character, Color.DarkSeaGreen);
             }
             else if (char.IsLower(character))
             {
-                Colorful.Console.Write(character, Color.CornflowerBlue);
+                Console.Write(character, Color.CornflowerBlue);
             }
             else
             {
 
-                Colorful.Console.Write(character, Color.SaddleBrown);
+                Console.Write(character, Color.SaddleBrown);
             }
         }
     }

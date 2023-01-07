@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-using Buttplug;
-using RonSijm.ButtFish.Models;
+﻿using Buttplug;
 
 namespace RonSijm.ButtFish.Connectors;
 
@@ -12,7 +10,7 @@ public class ButtplugConnector
     {
         Console.WriteLine(discoverAddress == null ? "Starting to scan for ButtPlug Devices..." : $"Attempting to connect to {discoverAddress}...");
         
-        Colorful.Console.WriteLine("Will return results after 5 seconds.", Color.Green);
+        Console.WriteLine("Will return results after 5 seconds.", Color.Green);
 
         if (discoverAddress == null)
         {
