@@ -1,6 +1,4 @@
-﻿using RonSijm.ButtFish.Encoders;
-
-namespace RonSijm.ButtFish;
+﻿namespace RonSijm.ButtFish;
 
 public class Options
 {
@@ -28,4 +26,10 @@ public class Options
     /// <see cref="TimeUnitConfig"/>
     /// </summary>
     public int TimeUnitInMS { get; set; } = 400;
+
+    /// <summary>
+    /// Indicates that you do not want to use a chess engine,
+    /// But instead you want to manually input the moves yourself.
+    /// </summary>
+    public bool UseManualInput { get; set; }
 }

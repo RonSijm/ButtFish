@@ -1,7 +1,6 @@
-﻿using RonSijm.ButtFish.Encoders;
-using YeelightAPI;
+﻿using YeelightAPI;
 
-namespace RonSijm.ButtFish.Models;
+namespace RonSijm.ButtFish.Devices;
 
 public class YeelightDevice : IDeviceAbstraction
 {
@@ -66,5 +65,6 @@ public class YeelightDevice : IDeviceAbstraction
     public void Dispose()
     {
         _selectedDevice.Dispose();
+        GC.SuppressFinalize(this);
     }
 }

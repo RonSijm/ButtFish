@@ -1,6 +1,5 @@
-﻿using FluentAssertions;
-using RonSijm.ButtFish.Ascii;
-
+﻿
+// ReSharper disable StringLiteralTypo
 namespace RonSijm.ButtFish.Tests;
 
 public class FENToAsciiTest

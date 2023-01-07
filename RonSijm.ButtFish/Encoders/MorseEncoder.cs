@@ -4,7 +4,12 @@ public class MorseEncoder : ICharacterEncoder
 {
     public string EncodeCharacter(char input)
     {
-        var result = MorseAlphabetDictionary[input];
+        var validInput = MorseAlphabetDictionary.TryGetValue(input, out var result);
+
+        if (!validInput)
+        {
+            Console.WriteLine($"Invalid input: '{input}' - Use a~h or 1~8", Color.Red);
+        }
 
         return result;
     }
@@ -28,6 +33,8 @@ public class MorseEncoder : ICharacterEncoder
         {'6', "-...."},
         {'7', "--..."},
         {'8', "---.."},
+
+        {' ', " "},
     };
 
 }

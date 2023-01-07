@@ -1,7 +1,4 @@
-﻿using System;
-using RonSijm.UCIEngineInterop.Models;
-
-namespace RonSijm.UCIEngineInterop.Core;
+﻿namespace RonSijm.UCIEngineInterop.Core;
 
 public interface IUCIEngine : IDisposable
 {

@@ -1,22 +1,21 @@
-﻿namespace RonSijm.ButtFish.Ascii
+﻿namespace RonSijm.ButtFish.Ascii;
+
+internal static class Loop
 {
-    internal static class Loop
+    internal static IEnumerable<int> Between(int minValue, int maxValue, bool inverted)
     {
-        internal static IEnumerable<int> Between(int minValue, int maxValue, bool inverted)
+        if (!inverted)
         {
-            if (!inverted)
+            for (var i = minValue; i < maxValue; i++)
             {
-                for (var i = minValue; i < maxValue; i++)
-                {
-                    yield return i;
-                }
+                yield return i;
             }
-            else
+        }
+        else
+        {
+            for (var i = maxValue - 1; i >= minValue; i--)
             {
-                for (var i = maxValue - 1; i >= minValue; i--)
-                {
-                    yield return i;
-                }
+                yield return i;
             }
         }
     }

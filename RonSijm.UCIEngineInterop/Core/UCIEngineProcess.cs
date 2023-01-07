@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-
-namespace RonSijm.UCIEngineInterop.Core;
+﻿namespace RonSijm.UCIEngineInterop.Core;
 
 internal class UCIEngineProcess : IDisposable
 {
@@ -24,7 +21,7 @@ internal class UCIEngineProcess : IDisposable
         
     public void Wait(int millisecond)
     {
-        this.Process.WaitForExit(millisecond);
+        Process.WaitForExit(millisecond);
     }
 
     public void WriteLine(string command)

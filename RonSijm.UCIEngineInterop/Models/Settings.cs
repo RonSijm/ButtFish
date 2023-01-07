@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
-
-namespace RonSijm.UCIEngineInterop.Models;
+﻿namespace RonSijm.UCIEngineInterop.Models;
 
 public class Settings
 {
-    public int Threads { get; }
-    public bool Ponder { get; }
-    public int MultiPV { get; }
-    public int SkillLevel { get; set; }
-    public int MoveOverhead { get; }
-    public int SlowMover { get; }
-    public bool UCIChess960 { get; }
+    private int Threads { get; }
+    private bool Ponder { get; }
+    private int MultiPV { get; }
+    public int SkillLevel { get; }
+    private int MoveOverhead { get; }
+    private int SlowMover { get; }
+    private bool UCIChess960 { get; }
 
     public Settings(int threads = 0, bool ponder = false, int multiPV = 1, int skillLevel = 20, int moveOverhead = 30, int slowMover = 80, bool uciChess960 = false)
     {
