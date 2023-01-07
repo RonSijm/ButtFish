@@ -1,4 +1,6 @@
-﻿namespace RonSijm.ButtFish;
+﻿using RonSijm.ButtFish.Devices;
+
+namespace RonSijm.ButtFish;
 
 public class DeviceDiscoveryManager
 {

@@ -1,4 +1,6 @@
-﻿namespace RonSijm.ButtFish.InputLoops;
+﻿using RonSijm.ButtFish.Devices;
+
+namespace RonSijm.ButtFish.InputLoops;
 
 public interface IInputLoop
 {

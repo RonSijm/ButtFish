@@ -105,6 +105,12 @@ public class UCIEngine : IUCIEngine
     private List<string> ReadLineAsList()
     {
         var data = UCIEngineProcess.ReadLine();
+
+        if (data == null)
+        {
+            return null;
+        }
+
         return data.Split(' ').ToList();
     }
 
@@ -126,6 +132,12 @@ public class UCIEngine : IUCIEngine
             }
 
             var data = ReadLineAsList();
+
+            if (data == null)
+            {
+                return null;
+            }
+
             if (data[0] == "Fen:")
             {
                 return string.Join(" ", data.GetRange(1, data.Count - 1));
@@ -153,6 +165,11 @@ public class UCIEngine : IUCIEngine
             }
 
             var data = ReadLineAsList();
+
+            if (data == null)
+            {
+                return null;
+            }
 
             if (data[0] == "bestmove")
             {

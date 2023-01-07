@@ -1,4 +1,6 @@
-﻿namespace RonSijm.ButtFish.InputLoops;
+﻿using RonSijm.ButtFish.Devices;
+
+namespace RonSijm.ButtFish.InputLoops;
 
 public class FENBasedLoop : IInputLoop
 {
@@ -55,6 +57,12 @@ public class FENBasedLoop : IInputLoop
                     Console.WriteLine("Next Best Position:");
 
                     var nextPosition = _iuciEngine.GetBestMove();
+
+                    if (nextPosition == null)
+                    {
+                        Console.WriteLine("Engine was not able to find a next best move", Color.Orange);
+                        continue;
+                    }
 
                     if (_options.EndPositionOnly)
                     {

@@ -1,4 +1,4 @@
-﻿using Buttplug;
+﻿using Buttplug.Client;
 
 namespace RonSijm.ButtFish.Devices;
 
@@ -16,14 +16,13 @@ public class ButtDevice : IDeviceAbstraction
 
     public async Task SendDuration(int time)
     {
-        await _device.SendVibrateCmd(1);
+        await _device.VibrateAsync(1);
         await Task.Delay(time);
-        await _device.SendVibrateCmd(0);
+        await _device.VibrateAsync(0);
     }
 
     public void Dispose()
     {
-        _device.Dispose();
         GC.SuppressFinalize(this);
     }
 
