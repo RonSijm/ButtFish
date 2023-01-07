@@ -43,7 +43,8 @@ public static class EngineSelector
             {
                 return locatedEngines[selectedIndex - 1];
             }
-        } while (true);
+        }
+        while (true);
     }
 
     private static void ShowNoViableEnginesWarning(Dictionary<string, string> engines)
@@ -54,12 +55,10 @@ public static class EngineSelector
 
         foreach (var optionsEngine in engines)
         {
-            Console.WriteLine(
-                $"Expected Executable for {optionsEngine.Key} to be at '{startupPath}\\{optionsEngine.Value}'");
+            Console.WriteLine($"Expected Executable for {optionsEngine.Key} to be at '{startupPath}\\{optionsEngine.Value}'");
         }
 
-        Console.WriteLine(
-            "You can download StockFish over here: https://github.com/RonSijm/ButtFish/blob/main/RonSijm.ButtFish/stockfish_15_x64_avx2.exe");
+        Console.WriteLine("You can download StockFish over here: https://github.com/RonSijm/ButtFish/blob/main/RonSijm.ButtFish/stockfish_15_x64_avx2.exe");
         Console.WriteLine("You can LC0 over here: https://lczero.org/play/download/");
     }
 
