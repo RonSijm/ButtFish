@@ -58,8 +58,10 @@ As you can see by the diagram, if we'd have to wait for "the chosen one" with in
 #### Config
 
 - [x] End Position Only [Expert] By just knowing the end position, a serious chess player would know intuitively which piece belongs there. ~ [Hikaru](https://youtu.be/ifJnWVSoyAY?t=431)
-   - `appsettings.json` -> EndPositionOnly -> true
-   
+   - `appsettings.json` -> EndPositionOnly -> true (default false)
+- [x] Use Manual Input - Skip using a chess engine, and manually send moves to devices. Allows you to manually input moves to broadcast instead
+   - `appsettings.json` -> UseManualInput -> true (default false)
+ 
 #### Tested and Supported Engines
 
 - [x] Stockfish (stockfish_15_x64_avx2.exe)
