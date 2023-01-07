@@ -1,4 +1,5 @@
-﻿using YeelightAPI;
+﻿using RonSijm.ButtFish.Devices;
+using YeelightAPI;
 
 namespace RonSijm.ButtFish.Connectors;
 

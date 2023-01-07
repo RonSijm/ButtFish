@@ -1,4 +1,4 @@
-﻿namespace RonSijm.ButtFish.Models;
+﻿namespace RonSijm.ButtFish.Devices;
 
 public interface IDeviceAbstraction : IDisposable
 {

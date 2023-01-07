@@ -13,7 +13,7 @@ public static class BoardToAscii
 
         foreach (var horizontal in Loop.Between(0, 8, !isWhiteToMove))
         {
-            bob.Append(" " + (8 - horizontal) + " ║");
+            bob.Append($" {(8 - horizontal)} \u2551");
 
             foreach (var vertical in Loop.Between(0, 8, !isWhiteToMove))
             {

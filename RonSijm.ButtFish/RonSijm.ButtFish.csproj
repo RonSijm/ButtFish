@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Buttplug" Version="2.0.6" />
+    <PackageReference Include="Buttplug" Version="3.0.0" />
+    <PackageReference Include="Buttplug.Client.Connectors.WebsocketConnector" Version="3.0.0" />
     <PackageReference Include="Colorful.Console" Version="1.2.15" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.1" />
