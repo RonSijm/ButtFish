@@ -6,7 +6,7 @@
 If you haven't been following the chess news - (because why would you) -
 As of the last couple of weeks - (Monday September 5, 2022) there's been drama going on in the chess world.
 
-During the Sinquefield Cup there was a chess match between 5-time world chess champion Magnus Carlsen - (basically the final boss of chess) - and another lower level chess player. No one expected Magnus to lose, but he did. After losing the chess match Magnus Carlsen withdrew from the tournament and posted a tweet saying "I've withdrawn from the tournament" and attached a meme video of Jose Mourinho saying ["I prefer not to speak. If I speak I am in big trouble … and I don't want to be in big trouble."](https://www.youtube.com/watch?v=yogfwJXVBDg) - Classic 👌.
+During the Sinquefield Cup there was a chess match between 5-time world chess champion Magnus Carlsen - (basically the final boss of chess) - and another lower level chess player. No one expected Magnus to lose, but he did. After losing the chess match Magnus Carlsen withdrew from the tournament and posted a tweet saying "I've withdrawn from the tournament" and attached a meme video of Jose Mourinho saying ["I prefer not to speak. If I speak I am in big trouble … and I don't want to be in big trouble."](https://www.youtube.com/watch?v=W4Y6SFdEEM4) - Classic 👌.
 
 The tweet was interpreted by the chess community as an accusation of cheating.
 
