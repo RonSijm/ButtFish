@@ -6,6 +6,7 @@
 
 - [There is a SOL based Buttfish coin, and I'm getting creators fees](https://pump.fun/coin/58Ghft9TvGNuBiDzy9cFD2Px9rz5cDVZ1XoMFk1xpump)
 - CA: 58Ghft9TvGNuBiDzy9cFD2Px9rz5cDVZ1XoMFk1xpump
+- Also http://buttfi.sh goes there
 - So if you're trading memecoins anyways, this is getting me free SOL :)
 
 ## Wait what now?
