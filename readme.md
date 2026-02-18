@@ -9,9 +9,10 @@
 - Also http://buttfi.sh goes there
 - So if you're trading memecoins anyways, this is getting me free SOL :)
 
-## web
+## Web
 
 Buttfish has been deployed as a website - see: https://ronsijm.github.io/ButtFish/
+![WebPreview](https://github.com/user-attachments/assets/a95c5f87-b204-4124-bd82-57572144b0a4)
 
 Game modes:
 - "Free Play" - Same as the original ButtFish. You can play, get a next 'best engine move' suggestion
