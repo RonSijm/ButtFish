@@ -1,0 +1,398 @@
+@using RonSijm.ButtFish.Web.Services
+@using RonSijm.ButtFish.Web.Models
+@inject ChessService ChessService
+@inject ButtplugService ButtplugService
+@inject StockfishService StockfishService
+@inject ICharacterEncoder Encoder
+
+<div class="chess-container">
+    <div class="chess-board">
+        @for (int row = 7; row >= 0; row--)
+        {
+            @for (int col = 0; col < 8; col++)
+            {
+                var square = GetSquareName(row, col);
+                var isLight = (row + col) % 2 == 0;
+                var piece = GetPieceAt(square);
+                var isHighlighted = _highlightedSquares.Contains(square);
+                var isSelected = _selectedSquare == square;
+                var isSuggestedFrom = ShowSuggestedMove && _suggestedMoveFrom == square;
+                var isSuggestedTo = ShowSuggestedMove && _suggestedMoveTo == square;
+                var shouldHidePiece = ShouldHidePiece(piece);
+
+                <div class="chess-square @(isLight ? "light" : "dark") @(isHighlighted ? "highlighted" : "") @(isSelected ? "selected" : "") @(isSuggestedFrom ? "suggested-from" : "") @(isSuggestedTo ? "suggested-to" : "")"
+                     @onclick="() => OnSquareClick(square)">
+                    @if (!string.IsNullOrEmpty(piece) && !shouldHidePiece)
+                    {
+                        <img src="@GetPieceImagePath(piece)" class="chess-piece-img" alt="@GetPieceSymbol(piece)" />
+                    }
+                    @if (isSuggestedTo && ShowSuggestedMove)
+                    {
+                        <span class="suggested-arrow">→</span>
+                    }
+                </div>
+            }
+        }
+    </div>
+    
+    <div class="chess-controls">
+        <button class="btn btn-primary" @onclick="NewGame">New Game</button>
+        <button class="btn btn-secondary" @onclick="UndoMove">Undo</button>
+        <button class="btn btn-info" @onclick="GetEngineMove" disabled="@_isThinking">
+            @if (_isThinking)
+            {
+                <span>Thinking...</span>
+            }
+            else
+            {
+                <span>Get Engine Move</span>
+            }
+        </button>
+
+        @if (_lastMove != null)
+        {
+            <div class="mt-2">
+                <strong>Last Move:</strong> @_lastMove
+            </div>
+        }
+
+        @if (_suggestedMove != null)
+        {
+            <div class="mt-2 alert alert-info">
+                <strong>Suggested Move:</strong> @_suggestedMove
+            </div>
+        }
+
+        @if (_isCheck)
+        {
+            <div class="alert alert-warning mt-2">Check!</div>
+        }
+
+        @if (_isCheckmate)
+        {
+            <div class="alert alert-danger mt-2">Checkmate!</div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool ShowSuggestedMove { get; set; }
+
+    [Parameter]
+    public GameMode GameMode { get; set; } = GameMode.FreePlay;
+
+    [Parameter]
+    public AIConfiguration AIConfig { get; set; } = new();
+
+    [Parameter]
+    public EventCallback<string> OnAIMove { get; set; }
+
+    private Dictionary<string, string> _boardPosition = new();
+    private string? _selectedSquare;
+    private HashSet<string> _highlightedSquares = new();
+    private HashSet<string> _suggestedMoveSquares = new();
+    private string? _lastMove;
+    private string? _suggestedMove;
+    private string? _suggestedMoveFrom;
+    private string? _suggestedMoveTo;
+    private bool _isCheck;
+    private bool _isCheckmate;
+    private bool _isThinking;
+    private bool _isPlayerTurn = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ChessService.InitializeAsync();
+        await StockfishService.InitializeAsync();
+        await RefreshBoard();
+
+        ChessService.OnBoardChanged += async () =>
+        {
+            await RefreshBoard();
+            StateHasChanged();
+        };
+    }
+
+    private async Task RefreshBoard()
+    {
+        _boardPosition = await ChessService.GetBoardPositionAsync();
+        _isCheck = await ChessService.IsCheckAsync();
+        _isCheckmate = await ChessService.IsCheckmateAsync();
+
+        if (ShowSuggestedMove && !_isCheckmate && StockfishService.IsInitialized)
+        {
+            await GetEngineMoveInternal();
+        }
+        else
+        {
+            _suggestedMoveSquares.Clear();
+            _suggestedMove = null;
+            _suggestedMoveFrom = null;
+            _suggestedMoveTo = null;
+        }
+    }
+
+    private string GetSquareName(int row, int col)
+    {
+        return $"{(char)('a' + col)}{row + 1}";
+    }
+
+    private string? GetPieceAt(string square)
+    {
+        _boardPosition.TryGetValue(square, out var piece);
+        return piece;
+    }
+
+    private string GetPieceSymbol(string piece)
+    {
+        var symbols = new Dictionary<string, string>
+        {
+            {"wK", "♔"}, {"wQ", "♕"}, {"wR", "♖"}, {"wB", "♗"}, {"wN", "♘"}, {"wP", "♙"},
+            {"bK", "♚"}, {"bQ", "♛"}, {"bR", "♜"}, {"bB", "♝"}, {"bN", "♞"}, {"bP", "♟"}
+        };
+
+        return symbols.TryGetValue(piece, out var symbol) ? symbol : "";
+    }
+
+    private string GetPieceImagePath(string piece)
+    {
+        if (string.IsNullOrEmpty(piece) || piece.Length < 2)
+            return "";
+
+        var color = piece[0] == 'w' ? "white" : "black";
+        var pieceType = piece[1] switch
+        {
+            'K' => "king",
+            'Q' => "queen",
+            'R' => "tower",
+            'B' => "bishop",
+            'N' => "horse",
+            'P' => "pawn",
+            _ => ""
+        };
+
+        if (string.IsNullOrEmpty(pieceType))
+            return "";
+
+        return $"images/pieces/{color}_{pieceType}.png";
+    }
+
+    private bool ShouldHidePiece(string? piece)
+    {
+        if (GameMode == GameMode.VsAIBlind && !string.IsNullOrEmpty(piece))
+        {
+            return piece.StartsWith("b");
+        }
+        return false;
+    }
+
+    private async Task OnSquareClick(string square)
+    {
+        if ((GameMode == GameMode.VsAI || GameMode == GameMode.VsAIBlind) && !_isPlayerTurn)
+        {
+            return;
+        }
+
+        if (_selectedSquare == null)
+        {
+            var piece = GetPieceAt(square);
+            if (!string.IsNullOrEmpty(piece))
+            {
+                if ((GameMode == GameMode.VsAI || GameMode == GameMode.VsAIBlind) && !piece.StartsWith("w"))
+                {
+                    return;
+                }
+
+                _selectedSquare = square;
+                var moves = await ChessService.GetLegalMovesAsync(square);
+                _highlightedSquares = moves.Select(m => m.To).ToHashSet();
+            }
+        }
+        else
+        {
+            if (_highlightedSquares.Contains(square))
+            {
+                var move = await ChessService.MakeMoveAsync(_selectedSquare, square);
+                if (move != null)
+                {
+                    _lastMove = move.San;
+
+                    if (ButtplugService.IsConnected && ButtplugService.Devices.Any())
+                    {
+                        await ButtplugService.SendMorseCodeAsync(move.San, Encoder);
+                    }
+
+                    if (GameMode == GameMode.VsAI || GameMode == GameMode.VsAIBlind)
+                    {
+                        _isPlayerTurn = false;
+                        StateHasChanged();
+                        await Task.Delay(500); // Small delay for better UX
+                        await MakeAIMove();
+                    }
+                }
+            }
+
+            _selectedSquare = null;
+            _highlightedSquares.Clear();
+        }
+    }
+
+    private async Task NewGame()
+    {
+        await ChessService.NewGameAsync();
+        await StockfishService.NewGameAsync();
+        _selectedSquare = null;
+        _highlightedSquares.Clear();
+        _lastMove = null;
+        _isPlayerTurn = true;
+
+        if (GameMode == GameMode.VsAI || GameMode == GameMode.VsAIBlind)
+        {
+            await ConfigureAI();
+        }
+    }
+
+    private async Task UndoMove()
+    {
+        await ChessService.UndoMoveAsync();
+        _selectedSquare = null;
+        _highlightedSquares.Clear();
+    }
+
+    private async Task GetEngineMove()
+    {
+        _isThinking = true;
+        StateHasChanged();
+
+        await GetEngineMoveInternal();
+
+        _isThinking = false;
+        StateHasChanged();
+    }
+
+    private async Task GetEngineMoveInternal()
+    {
+        if (!StockfishService.IsInitialized)
+        {
+            return;
+        }
+
+        try
+        {
+            var fen = await ChessService.GetFenAsync();
+            if (fen != null)
+            {
+                await StockfishService.SetPositionAsync(fen);
+                var bestMove = await StockfishService.GetBestMoveAsync(depth: 15);
+
+                if (bestMove != null && bestMove.Length >= 4)
+                {
+                    var from = bestMove.Substring(0, 2);
+                    var to = bestMove.Substring(2, 2);
+                    var promotion = bestMove.Length > 4 ? bestMove.Substring(4, 1) : "q";
+
+                    _suggestedMove = $"{from} → {to}";
+                    _suggestedMoveFrom = from;
+                    _suggestedMoveTo = to;
+
+                    _suggestedMoveSquares.Clear();
+                    _suggestedMoveSquares.Add(from);
+                    _suggestedMoveSquares.Add(to);
+                }
+                else
+                {
+                    _suggestedMove = null;
+                    _suggestedMoveFrom = null;
+                    _suggestedMoveTo = null;
+                    _suggestedMoveSquares.Clear();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error getting engine move: {ex.Message}");
+            _suggestedMove = null;
+            _suggestedMoveFrom = null;
+            _suggestedMoveTo = null;
+            _suggestedMoveSquares.Clear();
+        }
+    }
+
+    private async Task ConfigureAI()
+    {
+        if (!StockfishService.IsInitialized)
+        {
+            return;
+        }
+
+        await StockfishService.SetOptionAsync("Skill Level", AIConfig.SkillLevel.ToString());
+
+        if (AIConfig.LimitStrength)
+        {
+            await StockfishService.SetOptionAsync("UCI_LimitStrength", "true");
+            await StockfishService.SetOptionAsync("UCI_Elo", AIConfig.EloRating.ToString());
+        }
+        else
+        {
+            await StockfishService.SetOptionAsync("UCI_LimitStrength", "false");
+        }
+
+        await StockfishService.SetOptionAsync("Threads", AIConfig.Threads.ToString());
+    }
+
+    private async Task MakeAIMove()
+    {
+        if (!StockfishService.IsInitialized || _isCheckmate)
+        {
+            _isPlayerTurn = true;
+            return;
+        }
+
+        try
+        {
+            _isThinking = true;
+            StateHasChanged();
+
+            var fen = await ChessService.GetFenAsync();
+            if (fen != null)
+            {
+                await StockfishService.SetPositionAsync(fen);
+                var bestMove = await StockfishService.GetBestMoveAsync(
+                    depth: AIConfig.Depth,
+                    moveTimeMs: AIConfig.MoveTimeMs);
+
+                if (bestMove != null && bestMove.Length >= 4)
+                {
+                    var from = bestMove.Substring(0, 2);
+                    var to = bestMove.Substring(2, 2);
+                    var promotion = bestMove.Length > 4 ? bestMove.Substring(4, 1) : null;
+
+                    var move = await ChessService.MakeMoveAsync(from, to, promotion ?? "q");
+                    if (move != null)
+                    {
+                        _lastMove = $"AI: {move.San}";
+
+                        if (ButtplugService.IsConnected && ButtplugService.Devices.Any())
+                        {
+                            await ButtplugService.SendMorseCodeAsync(move.San, Encoder);
+                        }
+
+                        await OnAIMove.InvokeAsync(move.San);
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error making AI move: {ex.Message}");
+        }
+        finally
+        {
+            _isThinking = false;
+            _isPlayerTurn = true;
+            StateHasChanged();
+        }
+    }
+}
+

@@ -1,0 +1,52 @@
+---
+name: github pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.x
+
+      - name: Install .NET WASM Build Tools
+        run: dotnet workload install wasm-tools
+
+      - name: Install npm dependencies
+        run: npm install
+        working-directory: RonSijm.ButtFish.Web/wwwroot
+
+      - name: Publish Blazor WebAssembly Project
+        run: dotnet publish RonSijm.ButtFish.Web/RonSijm.ButtFish.Web.csproj -c Release -o dist/Web --nologo
+
+      - name: Rewrite base href for GitHub Pages
+        run: sed -i 's|<base href="/" />|<base href="/ButtFish/" />|g' dist/Web/wwwroot/index.html
+
+      - name: Copy index.html to 404.html for SPA routing
+        run: cp dist/Web/wwwroot/index.html dist/Web/wwwroot/404.html
+
+      - name: Add .nojekyll file
+        run: touch dist/Web/wwwroot/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: dist/Web/wwwroot
+          force: true
+          single-commit: true

@@ -1,0 +1,236 @@
+﻿@page "/"
+@using RonSijm.ButtFish.Web.Services
+@using RonSijm.ButtFish.Web.Components
+@using RonSijm.ButtFish.Web.Models
+@inject ButtplugService ButtplugService
+
+<PageTitle>ButtFish - Chess with Haptic Feedback</PageTitle>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+            <h1 style="font-size: 2.5rem; font-weight: 700;">ButtFish 🍑🐟</h1>
+            <p style="color: var(--text-secondary); font-size: 1.1rem;">Chess with Haptic Feedback And Tactile <span style="font-style: italic;">Ass</span>istance</p>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <ChessBoard ShowSuggestedMove="_showSuggestedMove"
+                        GameMode="_gameMode"
+                        AIConfig="_aiConfig"
+                        OnAIMove="HandleAIMove" />
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <h3>🔌 Device Connection</h3>
+                    @if (!ButtplugService.IsConnected)
+                    {
+                        <div class="mb-3">
+                            <label for="serverUrl" class="form-label">Intiface Central URL</label>
+                            <input type="text" class="form-control" id="serverUrl" @bind="_serverUrl" />
+                            <small class="form-text text-muted">Default: ws://localhost:12345</small>
+                        </div>
+                        <button class="btn btn-primary w-100" @onclick="Connect">Connect to Intiface Central</button>
+
+                        @if (_connectionError)
+                        {
+                            <div class="alert alert-danger mt-3">
+                                Failed to connect. Make sure Intiface Central is running.
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="alert alert-success">
+                            ✓ Connected to Intiface Central
+                        </div>
+
+                        <button class="btn btn-primary w-100 mb-2" @onclick="StartScanning">Scan for Devices</button>
+                        <button class="btn btn-secondary w-100 mb-2" @onclick="RefreshDevices">Refresh Devices</button>
+                        <button class="btn btn-danger w-100" @onclick="Disconnect">Disconnect</button>
+
+                        <div class="mt-3">
+                            <h6>Connected Devices (@ButtplugService.Devices.Count)</h6>
+                            @if (ButtplugService.Devices.Any())
+                            {
+                                <ul class="list-group">
+                                    @foreach (var device in ButtplugService.Devices)
+                                    {
+                                        <li class="list-group-item">
+                                            @device.Name
+                                            <button class="btn btn-sm btn-outline-primary float-end"
+                                                    @onclick="() => TestDevice(device.Index)">
+                                                Test
+                                            </button>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <p class="text-muted">No devices found. Click "Scan for Devices" to search.</p>
+                            }
+                        </div>
+                    }
+            </div>
+
+            <div class="card mt-3">
+                <h3>🎮 Game Mode</h3>
+                    <div class="mb-3">
+                        <label for="gameMode" class="form-label">Select Mode</label>
+                        <select class="form-select" id="gameMode" @bind="_gameMode">
+                            <option value="@GameMode.FreePlay">Free Play</option>
+                            <option value="@GameMode.VsAI">Play vs AI</option>
+                            <option value="@GameMode.VsAIBlind">Play vs AI (Blind Mode)</option>
+                        </select>
+                        <div class="mt-2 p-2" style="background-color: rgba(129, 182, 76, 0.1); border-left: 3px solid var(--primary-color); border-radius: 4px;">
+                            @if (_gameMode == GameMode.FreePlay)
+                            {
+                                <small style="color: var(--text-primary);">
+                                    <strong>Free Play Mode:</strong> Practice and analyze positions freely. No AI opponent - you can move both white and black pieces. Perfect for studying openings or setting up custom positions.
+                                </small>
+                            }
+                            else if (_gameMode == GameMode.VsAI)
+                            {
+                                <small style="color: var(--text-primary);">
+                                    <strong>Play vs AI:</strong> Challenge the Stockfish engine in a standard chess game. You play as White, AI plays as Black. Full board visibility - you can see all pieces and plan your strategy normally.
+                                </small>
+                            }
+                            else if (_gameMode == GameMode.VsAIBlind)
+                            {
+                                <small style="color: var(--text-primary);">
+                                    <strong>⚠️ Blind Mode:</strong> An extreme challenge! You play as White, but <strong>you cannot see the AI's black pieces</strong> on the board. You must rely entirely on <strong>haptic feedback (vibrations)</strong> transmitted via Morse code to know what moves the AI makes. This simulates playing blindfolded chess, but with tactile assistance instead of memory alone.
+                                </small>
+                            }
+                        </div>
+                    </div>
+
+                    @if (_gameMode == GameMode.VsAI || _gameMode == GameMode.VsAIBlind)
+                    {
+                        <hr />
+                        <h6>AI Configuration</h6>
+
+                        <div class="mb-3">
+                            <label for="skillLevel" class="form-label">Skill Level: @_aiConfig.SkillLevel</label>
+                            <input type="range" class="form-range" id="skillLevel"
+                                   @bind="_aiConfig.SkillLevel" min="0" max="20" />
+                            <small class="form-text text-muted">0 = Weakest, 20 = Strongest</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="depth" class="form-label">Search Depth: @_aiConfig.Depth</label>
+                            <input type="range" class="form-range" id="depth"
+                                   @bind="_aiConfig.Depth" min="1" max="20" />
+                            <small class="form-text text-muted">Higher = Stronger but slower</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="moveTime" class="form-label">Move Time: @_aiConfig.MoveTimeMs ms</label>
+                            <input type="range" class="form-range" id="moveTime"
+                                   @bind="_aiConfig.MoveTimeMs" min="500" max="5000" step="100" />
+                            <small class="form-text text-muted">Time AI takes to think</small>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="limitStrength"
+                                   @bind="_aiConfig.LimitStrength" />
+                            <label class="form-check-label" for="limitStrength">
+                                Limit Strength (Use ELO Rating)
+                            </label>
+                        </div>
+
+                        @if (_aiConfig.LimitStrength)
+                        {
+                            <div class="mb-3">
+                                <label for="eloRating" class="form-label">ELO Rating: @_aiConfig.EloRating</label>
+                                <input type="range" class="form-range" id="eloRating"
+                                       @bind="_aiConfig.EloRating" min="1350" max="2850" step="50" />
+                                <small class="form-text text-muted">1350-2850 (Beginner to Master)</small>
+                            </div>
+                        }
+                    }
+            </div>
+
+            <div class="card mt-3">
+                <h3>⚙️ Settings</h3>
+                    <div class="mb-3">
+                        <label for="timeUnit" class="form-label">Time Unit (ms)</label>
+                        <input type="number" class="form-control" id="timeUnit"
+                               @bind="TimeUnitConfig.TimeInit" min="100" max="2000" step="50" />
+                        <small class="form-text text-muted">
+                            Morse code timing: Dot = @TimeUnitConfig.DotTime ms, Dash = @TimeUnitConfig.DashTime ms
+                        </small>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="showSuggestedMove"
+                               @bind="_showSuggestedMove" />
+                        <label class="form-check-label" for="showSuggestedMove">
+                            Show suggested engine move
+                        </label>
+                        <small class="form-text text-muted d-block">
+                            Automatically highlight the best move suggested by Stockfish
+                        </small>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string _serverUrl = "ws://localhost:12345";
+    private bool _connectionError = false;
+    private bool _showSuggestedMove = false;
+    private GameMode _gameMode = GameMode.FreePlay;
+    private AIConfiguration _aiConfig = new();
+    private string? _lastAIMove;
+
+    private async Task Connect()
+    {
+        _connectionError = false;
+        var success = await ButtplugService.ConnectAsync(_serverUrl);
+        if (!success)
+        {
+            _connectionError = true;
+        }
+        StateHasChanged();
+    }
+
+    private async Task Disconnect()
+    {
+        await ButtplugService.DisconnectAsync();
+        StateHasChanged();
+    }
+
+    private async Task StartScanning()
+    {
+        await ButtplugService.StartScanningAsync();
+        await Task.Delay(3000); // Wait 3 seconds for devices
+        await RefreshDevices();
+    }
+
+    private async Task RefreshDevices()
+    {
+        await ButtplugService.GetDevicesAsync();
+        StateHasChanged();
+    }
+
+    private async Task TestDevice(int deviceIndex)
+    {
+        // Send a short test vibration
+        await ButtplugService.VibrateAsync(deviceIndex, 1.0, 500);
+    }
+
+    private void HandleAIMove(string move)
+    {
+        _lastAIMove = move;
+        Console.WriteLine($"AI played: {move}");
+    }
+
+    protected override void OnInitialized()
+    {
+        ButtplugService.OnConnectionChanged += () => StateHasChanged();
+        ButtplugService.OnDevicesChanged += (devices) => StateHasChanged();
+    }
+}

@@ -1,0 +1,118 @@
+.chess-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.chess-board {
+    display: grid;
+    grid-template-columns: repeat(8, 70px);
+    grid-template-rows: repeat(8, 70px);
+    border: 3px solid #3d3d3d;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.chess-square {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.chess-square.light {
+    background-color: #eeeed2;
+}
+
+.chess-square.dark {
+    background-color: #769656;
+}
+
+.chess-square.highlighted {
+    background-color: #baca44 !important;
+    box-shadow: inset 0 0 0 3px rgba(186, 202, 68, 0.6);
+}
+
+.chess-square.selected {
+    background-color: #f6f669 !important;
+    box-shadow: inset 0 0 0 3px rgba(246, 246, 105, 0.8);
+}
+
+.chess-square.suggested-from {
+    background-color: #7fb3d5 !important;
+    box-shadow: inset 0 0 0 3px #4a90c4;
+}
+
+.chess-square.suggested-to {
+    background-color: #87ceeb !important;
+    box-shadow: inset 0 0 0 3px #4a90c4;
+}
+
+.chess-square:hover {
+    filter: brightness(0.9);
+    transform: scale(0.98);
+}
+
+.chess-piece {
+    font-size: 48px;
+    user-select: none;
+    pointer-events: none;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.chess-piece-img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    user-select: none;
+    pointer-events: none;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.suggested-arrow {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    font-size: 20px;
+    color: #2c5f7f;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.chess-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 300px;
+}
+
+.chess-controls button {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .chess-board {
+        grid-template-columns: repeat(8, 50px);
+        grid-template-rows: repeat(8, 50px);
+    }
+
+    .chess-square {
+        width: 50px;
+        height: 50px;
+    }
+
+    .chess-piece {
+        font-size: 36px;
+    }
+}
+
