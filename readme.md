@@ -9,6 +9,16 @@
 - Also http://buttfi.sh goes there
 - So if you're trading memecoins anyways, this is getting me free SOL :)
 
+## web
+
+Buttfish has been deployed as a website - see: https://ronsijm.github.io/ButtFish/
+
+Game modes:
+- "Free Play" - Same as the original ButtFish. You can play, get a next 'best engine move' suggestion
+- "AI Mode" - Play against an AI (Normal)
+- "Play vs AI - Blind Mode"
+-- in Blind Mode you do not see the AI's chess pieces. It's sort of like blindfolded chess, but you have to fully rely on good vibes (literally)
+
 ## Wait what now?
 
 If you haven't been following the chess news - (because why would you) -
